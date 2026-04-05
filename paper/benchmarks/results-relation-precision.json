@@ -1,0 +1,4766 @@
+{
+  "summary": {
+    "total_entities": 400,
+    "entities_with_relations": 315,
+    "total_relations_checked": 525,
+    "correct_relations": 515,
+    "precision": 0.9809523809523809,
+    "cross_type_total": 47,
+    "cross_type_correct": 47,
+    "cross_type_precision": 1,
+    "by_type": {
+      "version": {
+        "total": 55,
+        "correct": 45,
+        "precision": 0.8181818181818182
+      },
+      "value_overlap": {
+        "total": 212,
+        "correct": 212,
+        "precision": 1
+      },
+      "id_ref": {
+        "total": 14,
+        "correct": 14,
+        "precision": 1
+      },
+      "name": {
+        "total": 238,
+        "correct": 238,
+        "precision": 1
+      },
+      "email": {
+        "total": 6,
+        "correct": 6,
+        "precision": 1
+      }
+    }
+  },
+  "details": [
+    {
+      "source_id": "issue.76",
+      "source_type": "issue",
+      "target_type": "release",
+      "match_type": "version",
+      "match_value": "v3.1.0",
+      "correct": true,
+      "reason": "version tag in both"
+    },
+    {
+      "source_id": "issue.76",
+      "source_type": "issue",
+      "target_type": "release",
+      "match_type": "version",
+      "match_value": "v3.1.0",
+      "correct": true,
+      "reason": "version tag in both"
+    },
+    {
+      "source_id": "issue.76",
+      "source_type": "issue",
+      "target_type": "json_data",
+      "match_type": "version",
+      "match_value": "v3.1.0",
+      "correct": false,
+      "reason": "missing in target"
+    },
+    {
+      "source_id": "issue.76",
+      "source_type": "issue",
+      "target_type": "github_repo",
+      "match_type": "version",
+      "match_value": "v3.1.0",
+      "correct": true,
+      "reason": "version tag in both"
+    },
+    {
+      "source_id": "issue.74",
+      "source_type": "issue",
+      "target_type": "github_repo",
+      "match_type": "value_overlap",
+      "match_value": "I_kwDORCeEws76jPcP",
+      "correct": true,
+      "reason": "meaningful overlap (cross-type)"
+    },
+    {
+      "source_id": "issue.72",
+      "source_type": "issue",
+      "target_type": "bug",
+      "match_type": "value_overlap",
+      "match_value": "I_kwDORCeEws76QYtT",
+      "correct": true,
+      "reason": "meaningful overlap (cross-type)"
+    },
+    {
+      "source_id": "issue.72",
+      "source_type": "issue",
+      "target_type": "github_repo",
+      "match_type": "value_overlap",
+      "match_value": "I_kwDORCeEws76QYtT",
+      "correct": true,
+      "reason": "meaningful overlap (cross-type)"
+    },
+    {
+      "source_id": "issue.71",
+      "source_type": "issue",
+      "target_type": "github_repo",
+      "match_type": "id_ref",
+      "match_value": "#123",
+      "correct": true,
+      "reason": "ID reference found in both"
+    },
+    {
+      "source_id": "issue.71",
+      "source_type": "issue",
+      "target_type": "issue",
+      "match_type": "id_ref",
+      "match_value": "#69",
+      "correct": true,
+      "reason": "ID reference found in both"
+    },
+    {
+      "source_id": "issue.71",
+      "source_type": "issue",
+      "target_type": "github_repo",
+      "match_type": "id_ref",
+      "match_value": "#69",
+      "correct": true,
+      "reason": "ID reference found in both"
+    },
+    {
+      "source_id": "issue.70",
+      "source_type": "issue",
+      "target_type": "issue",
+      "match_type": "id_ref",
+      "match_value": "#69",
+      "correct": true,
+      "reason": "ID reference found in both"
+    },
+    {
+      "source_id": "issue.70",
+      "source_type": "issue",
+      "target_type": "github_repo",
+      "match_type": "id_ref",
+      "match_value": "#69",
+      "correct": true,
+      "reason": "ID reference found in both"
+    },
+    {
+      "source_id": "issue.70",
+      "source_type": "issue",
+      "target_type": "github_repo",
+      "match_type": "id_ref",
+      "match_value": "#69",
+      "correct": true,
+      "reason": "ID reference found in both"
+    },
+    {
+      "source_id": "issue.69",
+      "source_type": "issue",
+      "target_type": "github_repo",
+      "match_type": "id_ref",
+      "match_value": "#1",
+      "correct": true,
+      "reason": "ID reference found in both"
+    },
+    {
+      "source_id": "issue.66",
+      "source_type": "issue",
+      "target_type": "github_repo",
+      "match_type": "value_overlap",
+      "match_value": "I_kwDORCeEws71DasR",
+      "correct": true,
+      "reason": "meaningful overlap (cross-type)"
+    },
+    {
+      "source_id": "issue.65",
+      "source_type": "issue",
+      "target_type": "github_repo",
+      "match_type": "version",
+      "match_value": "v0.1.0",
+      "correct": true,
+      "reason": "version tag in both"
+    },
+    {
+      "source_id": "issue.64",
+      "source_type": "issue",
+      "target_type": "github_repo",
+      "match_type": "value_overlap",
+      "match_value": "I_kwDORCeEws7zILdx",
+      "correct": true,
+      "reason": "meaningful overlap (cross-type)"
+    },
+    {
+      "source_id": "issue.63",
+      "source_type": "issue",
+      "target_type": "issue",
+      "match_type": "version",
+      "match_value": "v22.22.0",
+      "correct": true,
+      "reason": "version tag in both"
+    },
+    {
+      "source_id": "issue.63",
+      "source_type": "issue",
+      "target_type": "github_repo",
+      "match_type": "version",
+      "match_value": "v22.22.0",
+      "correct": true,
+      "reason": "version tag in both"
+    },
+    {
+      "source_id": "issue.60",
+      "source_type": "issue",
+      "target_type": "issue",
+      "match_type": "version",
+      "match_value": "v22.22.0",
+      "correct": true,
+      "reason": "version tag in both"
+    },
+    {
+      "source_id": "issue.60",
+      "source_type": "issue",
+      "target_type": "github_repo",
+      "match_type": "version",
+      "match_value": "v22.22.0",
+      "correct": true,
+      "reason": "version tag in both"
+    },
+    {
+      "source_id": "issue.54",
+      "source_type": "issue",
+      "target_type": "json_data",
+      "match_type": "version",
+      "match_value": "v1.1.0",
+      "correct": false,
+      "reason": "missing in target"
+    },
+    {
+      "source_id": "issue.50",
+      "source_type": "issue",
+      "target_type": "issue",
+      "match_type": "name",
+      "match_value": "fanpeeps",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "issue.48",
+      "source_type": "issue",
+      "target_type": "issue",
+      "match_type": "name",
+      "match_value": "fanpeeps",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "deal.Derrick",
+      "source_type": "deal",
+      "target_type": "deal",
+      "match_type": "value_overlap",
+      "match_value": "unknown",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "deal.Derrick",
+      "source_type": "deal",
+      "target_type": "deal",
+      "match_type": "value_overlap",
+      "match_value": "unknown",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "deal.Derrick",
+      "source_type": "deal",
+      "target_type": "deal",
+      "match_type": "value_overlap",
+      "match_value": "unknown",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "deal.Derrick",
+      "source_type": "deal",
+      "target_type": "deal",
+      "match_type": "value_overlap",
+      "match_value": "unknown",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "deal.Derrick",
+      "source_type": "deal",
+      "target_type": "deal",
+      "match_type": "value_overlap",
+      "match_value": "unknown",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "deal.Derrick",
+      "source_type": "deal",
+      "target_type": "deal",
+      "match_type": "value_overlap",
+      "match_value": "unknown",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "deal.Dat Han Cheam",
+      "source_type": "deal",
+      "target_type": "deal",
+      "match_type": "value_overlap",
+      "match_value": "unknown",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "deal.Dat Han Cheam",
+      "source_type": "deal",
+      "target_type": "deal",
+      "match_type": "value_overlap",
+      "match_value": "unknown",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "deal.Dat Han Cheam",
+      "source_type": "deal",
+      "target_type": "deal",
+      "match_type": "value_overlap",
+      "match_value": "unknown",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "deal.Dat Han Cheam",
+      "source_type": "deal",
+      "target_type": "deal",
+      "match_type": "value_overlap",
+      "match_value": "unknown",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "deal.Dat Han Cheam",
+      "source_type": "deal",
+      "target_type": "deal",
+      "match_type": "value_overlap",
+      "match_value": "unknown",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "deal.Dat Han Cheam",
+      "source_type": "deal",
+      "target_type": "deal",
+      "match_type": "value_overlap",
+      "match_value": "unknown",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "deal.Unknown (hackathon contact)",
+      "source_type": "deal",
+      "target_type": "deal",
+      "match_type": "value_overlap",
+      "match_value": "unknown",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "deal.Unknown (hackathon contact)",
+      "source_type": "deal",
+      "target_type": "deal",
+      "match_type": "value_overlap",
+      "match_value": "unknown",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "deal.Unknown (hackathon contact)",
+      "source_type": "deal",
+      "target_type": "deal",
+      "match_type": "value_overlap",
+      "match_value": "unknown",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "deal.Unknown (hackathon contact)",
+      "source_type": "deal",
+      "target_type": "deal",
+      "match_type": "value_overlap",
+      "match_value": "unknown",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "deal.Unknown (hackathon contact)",
+      "source_type": "deal",
+      "target_type": "deal",
+      "match_type": "value_overlap",
+      "match_value": "unknown",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "deal.Unknown (hackathon contact)",
+      "source_type": "deal",
+      "target_type": "deal",
+      "match_type": "value_overlap",
+      "match_value": "unknown",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "deal.Walt",
+      "source_type": "deal",
+      "target_type": "deal",
+      "match_type": "value_overlap",
+      "match_value": "unknown",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "deal.Walt",
+      "source_type": "deal",
+      "target_type": "deal",
+      "match_type": "value_overlap",
+      "match_value": "unknown",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "deal.Walt",
+      "source_type": "deal",
+      "target_type": "deal",
+      "match_type": "value_overlap",
+      "match_value": "unknown",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "deal.Walt",
+      "source_type": "deal",
+      "target_type": "deal",
+      "match_type": "value_overlap",
+      "match_value": "unknown",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "deal.Walt",
+      "source_type": "deal",
+      "target_type": "deal",
+      "match_type": "value_overlap",
+      "match_value": "unknown",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "deal.Walt",
+      "source_type": "deal",
+      "target_type": "deal",
+      "match_type": "value_overlap",
+      "match_value": "unknown",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "deal.Michael Rinko",
+      "source_type": "deal",
+      "target_type": "deal",
+      "match_type": "value_overlap",
+      "match_value": "unknown",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "deal.Michael Rinko",
+      "source_type": "deal",
+      "target_type": "deal",
+      "match_type": "value_overlap",
+      "match_value": "unknown",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "deal.Michael Rinko",
+      "source_type": "deal",
+      "target_type": "deal",
+      "match_type": "value_overlap",
+      "match_value": "unknown",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "deal.Michael Rinko",
+      "source_type": "deal",
+      "target_type": "deal",
+      "match_type": "value_overlap",
+      "match_value": "unknown",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "deal.Michael Rinko",
+      "source_type": "deal",
+      "target_type": "deal",
+      "match_type": "value_overlap",
+      "match_value": "unknown",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "deal.Michael Rinko",
+      "source_type": "deal",
+      "target_type": "deal",
+      "match_type": "value_overlap",
+      "match_value": "unknown",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "deal.Raghav Agarwal",
+      "source_type": "deal",
+      "target_type": "deal",
+      "match_type": "value_overlap",
+      "match_value": "unknown",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "deal.Raghav Agarwal",
+      "source_type": "deal",
+      "target_type": "deal",
+      "match_type": "value_overlap",
+      "match_value": "unknown",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "deal.Raghav Agarwal",
+      "source_type": "deal",
+      "target_type": "deal",
+      "match_type": "value_overlap",
+      "match_value": "unknown",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "deal.Raghav Agarwal",
+      "source_type": "deal",
+      "target_type": "deal",
+      "match_type": "value_overlap",
+      "match_value": "unknown",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "deal.Raghav Agarwal",
+      "source_type": "deal",
+      "target_type": "deal",
+      "match_type": "value_overlap",
+      "match_value": "unknown",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "deal.Raghav Agarwal",
+      "source_type": "deal",
+      "target_type": "deal",
+      "match_type": "value_overlap",
+      "match_value": "unknown",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "deal.Shawn Cheng",
+      "source_type": "deal",
+      "target_type": "deal",
+      "match_type": "value_overlap",
+      "match_value": "unknown",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "deal.Shawn Cheng",
+      "source_type": "deal",
+      "target_type": "deal",
+      "match_type": "value_overlap",
+      "match_value": "unknown",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "deal.Shawn Cheng",
+      "source_type": "deal",
+      "target_type": "deal",
+      "match_type": "value_overlap",
+      "match_value": "unknown",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "deal.Shawn Cheng",
+      "source_type": "deal",
+      "target_type": "deal",
+      "match_type": "value_overlap",
+      "match_value": "unknown",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "deal.Shawn Cheng",
+      "source_type": "deal",
+      "target_type": "deal",
+      "match_type": "value_overlap",
+      "match_value": "unknown",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "deal.Shawn Cheng",
+      "source_type": "deal",
+      "target_type": "deal",
+      "match_type": "value_overlap",
+      "match_value": "unknown",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "deal.Jianhong Lin",
+      "source_type": "deal",
+      "target_type": "deal",
+      "match_type": "name",
+      "match_value": "angel",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "deal.Jianhong Lin",
+      "source_type": "deal",
+      "target_type": "dead_deal",
+      "match_type": "name",
+      "match_value": "angel",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "deal.Jianhong Lin",
+      "source_type": "deal",
+      "target_type": "deal",
+      "match_type": "value_overlap",
+      "match_value": "angel",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "deal.Jianhong Lin",
+      "source_type": "deal",
+      "target_type": "deal",
+      "match_type": "value_overlap",
+      "match_value": "angel",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "deal.Jianhong Lin",
+      "source_type": "deal",
+      "target_type": "deal",
+      "match_type": "value_overlap",
+      "match_value": "angel",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "deal.Jungpil Hahn",
+      "source_type": "deal",
+      "target_type": "deal",
+      "match_type": "value_overlap",
+      "match_value": "angel",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "deal.Jungpil Hahn",
+      "source_type": "deal",
+      "target_type": "deal",
+      "match_type": "value_overlap",
+      "match_value": "angel",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "deal.Jungpil Hahn",
+      "source_type": "deal",
+      "target_type": "deal",
+      "match_type": "value_overlap",
+      "match_value": "angel",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "deal.Alfonso Gomez-Jordana",
+      "source_type": "deal",
+      "target_type": "deal",
+      "match_type": "value_overlap",
+      "match_value": "angel",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "deal.Alfonso Gomez-Jordana",
+      "source_type": "deal",
+      "target_type": "deal",
+      "match_type": "value_overlap",
+      "match_value": "angel",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "deal.Alfonso Gomez-Jordana",
+      "source_type": "deal",
+      "target_type": "deal",
+      "match_type": "value_overlap",
+      "match_value": "angel",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "deal.Tom Curry",
+      "source_type": "deal",
+      "target_type": "deal",
+      "match_type": "value_overlap",
+      "match_value": "angel",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "deal.Tom Curry",
+      "source_type": "deal",
+      "target_type": "deal",
+      "match_type": "value_overlap",
+      "match_value": "angel",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "deal.Tom Curry",
+      "source_type": "deal",
+      "target_type": "deal",
+      "match_type": "value_overlap",
+      "match_value": "angel",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "deal.Samuel C",
+      "source_type": "deal",
+      "target_type": "deal",
+      "match_type": "name",
+      "match_value": "angel",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "deal.Samuel C",
+      "source_type": "deal",
+      "target_type": "dead_deal",
+      "match_type": "name",
+      "match_value": "angel",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "release.286034010",
+      "source_type": "release",
+      "target_type": "release",
+      "match_type": "version",
+      "match_value": "v0.5.13",
+      "correct": true,
+      "reason": "version tag in both"
+    },
+    {
+      "source_id": "release.286033462",
+      "source_type": "release",
+      "target_type": "release",
+      "match_type": "version",
+      "match_value": "v0.5.12",
+      "correct": true,
+      "reason": "version tag in both"
+    },
+    {
+      "source_id": "release.305384177",
+      "source_type": "release",
+      "target_type": "issue",
+      "match_type": "version",
+      "match_value": "v3.1.0",
+      "correct": true,
+      "reason": "version tag in both"
+    },
+    {
+      "source_id": "release.305384177",
+      "source_type": "release",
+      "target_type": "release",
+      "match_type": "version",
+      "match_value": "v3.1.0",
+      "correct": true,
+      "reason": "version tag in both"
+    },
+    {
+      "source_id": "release.305384177",
+      "source_type": "release",
+      "target_type": "json_data",
+      "match_type": "version",
+      "match_value": "v3.1.0",
+      "correct": false,
+      "reason": "missing in target"
+    },
+    {
+      "source_id": "release.305384177",
+      "source_type": "release",
+      "target_type": "github_repo",
+      "match_type": "version",
+      "match_value": "v3.1.0",
+      "correct": true,
+      "reason": "version tag in both"
+    },
+    {
+      "source_id": "release.305367432",
+      "source_type": "release",
+      "target_type": "release",
+      "match_type": "version",
+      "match_value": "v3.0.4",
+      "correct": true,
+      "reason": "version tag in both"
+    },
+    {
+      "source_id": "release.305367432",
+      "source_type": "release",
+      "target_type": "release",
+      "match_type": "version",
+      "match_value": "v3.0.3",
+      "correct": true,
+      "reason": "version tag in both"
+    },
+    {
+      "source_id": "release.305367432",
+      "source_type": "release",
+      "target_type": "release",
+      "match_type": "version",
+      "match_value": "v3.0.3",
+      "correct": true,
+      "reason": "version tag in both"
+    },
+    {
+      "source_id": "release.305361538",
+      "source_type": "release",
+      "target_type": "release",
+      "match_type": "version",
+      "match_value": "v3.0.3",
+      "correct": true,
+      "reason": "version tag in both"
+    },
+    {
+      "source_id": "release.305361538",
+      "source_type": "release",
+      "target_type": "release",
+      "match_type": "version",
+      "match_value": "v3.0.3",
+      "correct": true,
+      "reason": "version tag in both"
+    },
+    {
+      "source_id": "release.305361538",
+      "source_type": "release",
+      "target_type": "release",
+      "match_type": "version",
+      "match_value": "v3.0.3",
+      "correct": true,
+      "reason": "version tag in both"
+    },
+    {
+      "source_id": "release.305250430",
+      "source_type": "release",
+      "target_type": "release",
+      "match_type": "version",
+      "match_value": "v2.12.4",
+      "correct": true,
+      "reason": "version tag in both"
+    },
+    {
+      "source_id": "release.305249840",
+      "source_type": "release",
+      "target_type": "release",
+      "match_type": "version",
+      "match_value": "v2.12.4",
+      "correct": true,
+      "reason": "version tag in both"
+    },
+    {
+      "source_id": "release.0",
+      "source_type": "release",
+      "target_type": "release",
+      "match_type": "version",
+      "match_value": "v0.5.13",
+      "correct": true,
+      "reason": "version tag in both"
+    },
+    {
+      "source_id": "release.1",
+      "source_type": "release",
+      "target_type": "release",
+      "match_type": "version",
+      "match_value": "v0.5.12",
+      "correct": true,
+      "reason": "version tag in both"
+    },
+    {
+      "source_id": "release.2",
+      "source_type": "release",
+      "target_type": "issue",
+      "match_type": "version",
+      "match_value": "v3.1.0",
+      "correct": true,
+      "reason": "version tag in both"
+    },
+    {
+      "source_id": "release.2",
+      "source_type": "release",
+      "target_type": "release",
+      "match_type": "version",
+      "match_value": "v3.1.0",
+      "correct": true,
+      "reason": "version tag in both"
+    },
+    {
+      "source_id": "release.2",
+      "source_type": "release",
+      "target_type": "json_data",
+      "match_type": "version",
+      "match_value": "v3.1.0",
+      "correct": false,
+      "reason": "missing in target"
+    },
+    {
+      "source_id": "release.2",
+      "source_type": "release",
+      "target_type": "github_repo",
+      "match_type": "version",
+      "match_value": "v3.1.0",
+      "correct": true,
+      "reason": "version tag in both"
+    },
+    {
+      "source_id": "release.3",
+      "source_type": "release",
+      "target_type": "release",
+      "match_type": "version",
+      "match_value": "v3.0.4",
+      "correct": true,
+      "reason": "version tag in both"
+    },
+    {
+      "source_id": "release.3",
+      "source_type": "release",
+      "target_type": "release",
+      "match_type": "version",
+      "match_value": "v3.0.3",
+      "correct": true,
+      "reason": "version tag in both"
+    },
+    {
+      "source_id": "release.3",
+      "source_type": "release",
+      "target_type": "release",
+      "match_type": "version",
+      "match_value": "v3.0.3",
+      "correct": true,
+      "reason": "version tag in both"
+    },
+    {
+      "source_id": "release.4",
+      "source_type": "release",
+      "target_type": "release",
+      "match_type": "version",
+      "match_value": "v3.0.3",
+      "correct": true,
+      "reason": "version tag in both"
+    },
+    {
+      "source_id": "release.4",
+      "source_type": "release",
+      "target_type": "release",
+      "match_type": "version",
+      "match_value": "v3.0.3",
+      "correct": true,
+      "reason": "version tag in both"
+    },
+    {
+      "source_id": "release.4",
+      "source_type": "release",
+      "target_type": "release",
+      "match_type": "version",
+      "match_value": "v3.0.3",
+      "correct": true,
+      "reason": "version tag in both"
+    },
+    {
+      "source_id": "npm_downloads.0",
+      "source_type": "npm_downloads",
+      "target_type": "repo",
+      "match_type": "value_overlap",
+      "match_value": "unbrowse",
+      "correct": true,
+      "reason": "meaningful overlap (cross-type)"
+    },
+    {
+      "source_id": "npm_downloads.0",
+      "source_type": "npm_downloads",
+      "target_type": "metric",
+      "match_type": "value_overlap",
+      "match_value": "unbrowse",
+      "correct": true,
+      "reason": "meaningful overlap (cross-type)"
+    },
+    {
+      "source_id": "npm_downloads.0",
+      "source_type": "npm_downloads",
+      "target_type": "npm_daily",
+      "match_type": "value_overlap",
+      "match_value": "unbrowse",
+      "correct": true,
+      "reason": "meaningful overlap (cross-type)"
+    },
+    {
+      "source_id": "npm_downloads.0",
+      "source_type": "npm_downloads",
+      "target_type": "repo",
+      "match_type": "value_overlap",
+      "match_value": "unbrowse",
+      "correct": true,
+      "reason": "meaningful overlap (cross-type)"
+    },
+    {
+      "source_id": "npm_downloads.0",
+      "source_type": "npm_downloads",
+      "target_type": "repo",
+      "match_type": "value_overlap",
+      "match_value": "unbrowse",
+      "correct": true,
+      "reason": "meaningful overlap (cross-type)"
+    },
+    {
+      "source_id": "npm_downloads.0",
+      "source_type": "npm_downloads",
+      "target_type": "metric",
+      "match_type": "value_overlap",
+      "match_value": "unbrowse",
+      "correct": true,
+      "reason": "meaningful overlap (cross-type)"
+    },
+    {
+      "source_id": "npm_downloads.0",
+      "source_type": "npm_downloads",
+      "target_type": "npm_daily",
+      "match_type": "value_overlap",
+      "match_value": "unbrowse",
+      "correct": true,
+      "reason": "meaningful overlap (cross-type)"
+    },
+    {
+      "source_id": "npm_downloads.0",
+      "source_type": "npm_downloads",
+      "target_type": "repo",
+      "match_type": "value_overlap",
+      "match_value": "unbrowse",
+      "correct": true,
+      "reason": "meaningful overlap (cross-type)"
+    },
+    {
+      "source_id": "npm_downloads.0",
+      "source_type": "npm_downloads",
+      "target_type": "repo",
+      "match_type": "value_overlap",
+      "match_value": "unbrowse",
+      "correct": true,
+      "reason": "meaningful overlap (cross-type)"
+    },
+    {
+      "source_id": "npm_downloads.0",
+      "source_type": "npm_downloads",
+      "target_type": "metric",
+      "match_type": "value_overlap",
+      "match_value": "unbrowse",
+      "correct": true,
+      "reason": "meaningful overlap (cross-type)"
+    },
+    {
+      "source_id": "npm_downloads.0",
+      "source_type": "npm_downloads",
+      "target_type": "npm_daily",
+      "match_type": "value_overlap",
+      "match_value": "unbrowse",
+      "correct": true,
+      "reason": "meaningful overlap (cross-type)"
+    },
+    {
+      "source_id": "npm_downloads.0",
+      "source_type": "npm_downloads",
+      "target_type": "repo",
+      "match_type": "value_overlap",
+      "match_value": "unbrowse",
+      "correct": true,
+      "reason": "meaningful overlap (cross-type)"
+    },
+    {
+      "source_id": "connector.David",
+      "source_type": "connector",
+      "target_type": "connector",
+      "match_type": "value_overlap",
+      "match_value": "high",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "connector.David",
+      "source_type": "connector",
+      "target_type": "email_reply",
+      "match_type": "value_overlap",
+      "match_value": "high",
+      "correct": true,
+      "reason": "meaningful overlap (cross-type)"
+    },
+    {
+      "source_id": "connector.Euclid",
+      "source_type": "connector",
+      "target_type": "connector",
+      "match_type": "value_overlap",
+      "match_value": "high",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "connector.Euclid",
+      "source_type": "connector",
+      "target_type": "email_reply",
+      "match_type": "value_overlap",
+      "match_value": "high",
+      "correct": true,
+      "reason": "meaningful overlap (cross-type)"
+    },
+    {
+      "source_id": "connector.Natalie Ng",
+      "source_type": "connector",
+      "target_type": "connector",
+      "match_type": "value_overlap",
+      "match_value": "medium",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "connector.Joy Song",
+      "source_type": "connector",
+      "target_type": "connector",
+      "match_type": "value_overlap",
+      "match_value": "medium",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "connector.David",
+      "source_type": "connector",
+      "target_type": "connector",
+      "match_type": "value_overlap",
+      "match_value": "high",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "connector.David",
+      "source_type": "connector",
+      "target_type": "email_reply",
+      "match_type": "value_overlap",
+      "match_value": "high",
+      "correct": true,
+      "reason": "meaningful overlap (cross-type)"
+    },
+    {
+      "source_id": "email_reply.19d5d38247cfb91a",
+      "source_type": "email_reply",
+      "target_type": "connector",
+      "match_type": "value_overlap",
+      "match_value": "high",
+      "correct": true,
+      "reason": "meaningful overlap (cross-type)"
+    },
+    {
+      "source_id": "email_reply.19d5d38247cfb91a",
+      "source_type": "email_reply",
+      "target_type": "connector",
+      "match_type": "value_overlap",
+      "match_value": "high",
+      "correct": true,
+      "reason": "meaningful overlap (cross-type)"
+    },
+    {
+      "source_id": "dead_deal.Bobby Ghoshal",
+      "source_type": "dead_deal",
+      "target_type": "deal",
+      "match_type": "name",
+      "match_value": "angel",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "dead_deal.Bobby Ghoshal",
+      "source_type": "dead_deal",
+      "target_type": "deal",
+      "match_type": "name",
+      "match_value": "angel",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "repo.0",
+      "source_type": "repo",
+      "target_type": "repo",
+      "match_type": "email",
+      "match_value": "git@github.com",
+      "correct": true,
+      "reason": "valid email in both"
+    },
+    {
+      "source_id": "repo.0",
+      "source_type": "repo",
+      "target_type": "github_repo",
+      "match_type": "email",
+      "match_value": "git@github.com",
+      "correct": true,
+      "reason": "valid email in both"
+    },
+    {
+      "source_id": "repo.0",
+      "source_type": "repo",
+      "target_type": "npm_downloads",
+      "match_type": "value_overlap",
+      "match_value": "unbrowse",
+      "correct": true,
+      "reason": "meaningful overlap (cross-type)"
+    },
+    {
+      "source_id": "repo.0",
+      "source_type": "repo",
+      "target_type": "metric",
+      "match_type": "value_overlap",
+      "match_value": "unbrowse",
+      "correct": true,
+      "reason": "meaningful overlap (cross-type)"
+    },
+    {
+      "source_id": "repo.0",
+      "source_type": "repo",
+      "target_type": "npm_daily",
+      "match_type": "value_overlap",
+      "match_value": "unbrowse",
+      "correct": true,
+      "reason": "meaningful overlap (cross-type)"
+    },
+    {
+      "source_id": "repo.1143440578",
+      "source_type": "repo",
+      "target_type": "repo",
+      "match_type": "email",
+      "match_value": "git@github.com",
+      "correct": true,
+      "reason": "valid email in both"
+    },
+    {
+      "source_id": "repo.1143440578",
+      "source_type": "repo",
+      "target_type": "github_repo",
+      "match_type": "email",
+      "match_value": "git@github.com",
+      "correct": true,
+      "reason": "valid email in both"
+    },
+    {
+      "source_id": "repo.1143440578",
+      "source_type": "repo",
+      "target_type": "npm_downloads",
+      "match_type": "value_overlap",
+      "match_value": "unbrowse",
+      "correct": true,
+      "reason": "meaningful overlap (cross-type)"
+    },
+    {
+      "source_id": "repo.1143440578",
+      "source_type": "repo",
+      "target_type": "metric",
+      "match_type": "value_overlap",
+      "match_value": "unbrowse",
+      "correct": true,
+      "reason": "meaningful overlap (cross-type)"
+    },
+    {
+      "source_id": "repo.1143440578",
+      "source_type": "repo",
+      "target_type": "npm_daily",
+      "match_type": "value_overlap",
+      "match_value": "unbrowse",
+      "correct": true,
+      "reason": "meaningful overlap (cross-type)"
+    },
+    {
+      "source_id": "metric.0",
+      "source_type": "metric",
+      "target_type": "npm_downloads",
+      "match_type": "value_overlap",
+      "match_value": "unbrowse",
+      "correct": true,
+      "reason": "meaningful overlap (cross-type)"
+    },
+    {
+      "source_id": "metric.0",
+      "source_type": "metric",
+      "target_type": "repo",
+      "match_type": "value_overlap",
+      "match_value": "unbrowse",
+      "correct": true,
+      "reason": "meaningful overlap (cross-type)"
+    },
+    {
+      "source_id": "metric.0",
+      "source_type": "metric",
+      "target_type": "npm_daily",
+      "match_type": "value_overlap",
+      "match_value": "unbrowse",
+      "correct": true,
+      "reason": "meaningful overlap (cross-type)"
+    },
+    {
+      "source_id": "metric.0",
+      "source_type": "metric",
+      "target_type": "repo",
+      "match_type": "value_overlap",
+      "match_value": "unbrowse",
+      "correct": true,
+      "reason": "meaningful overlap (cross-type)"
+    },
+    {
+      "source_id": "pull_request.3486069238",
+      "source_type": "pull_request",
+      "target_type": "pull_request",
+      "match_type": "value_overlap",
+      "match_value": "edf1886b642f2e61628e45a3f1a324302e63873d",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "pull_request.3486069238",
+      "source_type": "pull_request",
+      "target_type": "pull_request",
+      "match_type": "value_overlap",
+      "match_value": "edf1886b642f2e61628e45a3f1a324302e63873d",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "pull_request.3432863127",
+      "source_type": "pull_request",
+      "target_type": "pull_request",
+      "match_type": "value_overlap",
+      "match_value": "unbrowse-ai:codex/sync-installer-script-stable",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "pull_request.3432800228",
+      "source_type": "pull_request",
+      "target_type": "pull_request",
+      "match_type": "value_overlap",
+      "match_value": "unbrowse-ai:codex/sync-installer-script-stable",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "pull_request.3301533772",
+      "source_type": "pull_request",
+      "target_type": "pull_request",
+      "match_type": "value_overlap",
+      "match_value": "unbrowse-ai:ux-overhaul",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "pull_request.3301533772",
+      "source_type": "pull_request",
+      "target_type": "pull_request",
+      "match_type": "value_overlap",
+      "match_value": "unbrowse-ai:ux-overhaul",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "pull_request.3301533772",
+      "source_type": "pull_request",
+      "target_type": "pull_request",
+      "match_type": "value_overlap",
+      "match_value": "unbrowse-ai:ux-overhaul",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "pull_request.3301533772",
+      "source_type": "pull_request",
+      "target_type": "pull_request",
+      "match_type": "value_overlap",
+      "match_value": "unbrowse-ai:ux-overhaul",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "pull_request.3301533772",
+      "source_type": "pull_request",
+      "target_type": "pull_request",
+      "match_type": "value_overlap",
+      "match_value": "unbrowse-ai:ux-overhaul",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "pull_request.3301533772",
+      "source_type": "pull_request",
+      "target_type": "pull_request",
+      "match_type": "value_overlap",
+      "match_value": "unbrowse-ai:ux-overhaul",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "pull_request.3301519613",
+      "source_type": "pull_request",
+      "target_type": "pull_request",
+      "match_type": "value_overlap",
+      "match_value": "b638243f86b0169f266faf9473918be6c1a73622",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "pull_request.3301519613",
+      "source_type": "pull_request",
+      "target_type": "pull_request",
+      "match_type": "value_overlap",
+      "match_value": "unbrowse-ai:ux-overhaul",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "pull_request.3301519613",
+      "source_type": "pull_request",
+      "target_type": "pull_request",
+      "match_type": "value_overlap",
+      "match_value": "unbrowse-ai:ux-overhaul",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "pull_request.3301519613",
+      "source_type": "pull_request",
+      "target_type": "pull_request",
+      "match_type": "value_overlap",
+      "match_value": "unbrowse-ai:ux-overhaul",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "pull_request.3301519613",
+      "source_type": "pull_request",
+      "target_type": "pull_request",
+      "match_type": "value_overlap",
+      "match_value": "unbrowse-ai:ux-overhaul",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "pull_request.3301519613",
+      "source_type": "pull_request",
+      "target_type": "pull_request",
+      "match_type": "value_overlap",
+      "match_value": "unbrowse-ai:ux-overhaul",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "pull_request.3301288790",
+      "source_type": "pull_request",
+      "target_type": "pull_request",
+      "match_type": "value_overlap",
+      "match_value": "2e25ed5af7446c2937759ccc8211bb16dec76ef8",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "pull_request.3301288790",
+      "source_type": "pull_request",
+      "target_type": "pull_request",
+      "match_type": "value_overlap",
+      "match_value": "unbrowse-ai:ux-overhaul",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "pull_request.3301288790",
+      "source_type": "pull_request",
+      "target_type": "pull_request",
+      "match_type": "value_overlap",
+      "match_value": "unbrowse-ai:ux-overhaul",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "pull_request.3301288790",
+      "source_type": "pull_request",
+      "target_type": "pull_request",
+      "match_type": "value_overlap",
+      "match_value": "unbrowse-ai:ux-overhaul",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "pull_request.3301288790",
+      "source_type": "pull_request",
+      "target_type": "pull_request",
+      "match_type": "value_overlap",
+      "match_value": "unbrowse-ai:ux-overhaul",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "pull_request.3301288790",
+      "source_type": "pull_request",
+      "target_type": "pull_request",
+      "match_type": "value_overlap",
+      "match_value": "unbrowse-ai:ux-overhaul",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "pull_request.3301255423",
+      "source_type": "pull_request",
+      "target_type": "pull_request",
+      "match_type": "value_overlap",
+      "match_value": "ca450969502372dd4852e588829794835d37f379",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "pull_request.3301255423",
+      "source_type": "pull_request",
+      "target_type": "pull_request",
+      "match_type": "value_overlap",
+      "match_value": "unbrowse-ai:ux-overhaul",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "pull_request.3301255423",
+      "source_type": "pull_request",
+      "target_type": "pull_request",
+      "match_type": "value_overlap",
+      "match_value": "unbrowse-ai:ux-overhaul",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "pull_request.3301255423",
+      "source_type": "pull_request",
+      "target_type": "pull_request",
+      "match_type": "value_overlap",
+      "match_value": "unbrowse-ai:ux-overhaul",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "pull_request.3301255423",
+      "source_type": "pull_request",
+      "target_type": "pull_request",
+      "match_type": "value_overlap",
+      "match_value": "unbrowse-ai:ux-overhaul",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "pull_request.3301255423",
+      "source_type": "pull_request",
+      "target_type": "pull_request",
+      "match_type": "value_overlap",
+      "match_value": "unbrowse-ai:ux-overhaul",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "pull_request.3301012266",
+      "source_type": "pull_request",
+      "target_type": "pull_request",
+      "match_type": "value_overlap",
+      "match_value": "1c21c9fbe823b410158b15ea726d077a31fae24d",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "pull_request.3301012266",
+      "source_type": "pull_request",
+      "target_type": "pull_request",
+      "match_type": "value_overlap",
+      "match_value": "unbrowse-ai:ux-overhaul",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "pull_request.3301012266",
+      "source_type": "pull_request",
+      "target_type": "pull_request",
+      "match_type": "value_overlap",
+      "match_value": "unbrowse-ai:ux-overhaul",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "pull_request.3301012266",
+      "source_type": "pull_request",
+      "target_type": "pull_request",
+      "match_type": "value_overlap",
+      "match_value": "unbrowse-ai:ux-overhaul",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "pull_request.3301012266",
+      "source_type": "pull_request",
+      "target_type": "pull_request",
+      "match_type": "value_overlap",
+      "match_value": "unbrowse-ai:ux-overhaul",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "pull_request.3301012266",
+      "source_type": "pull_request",
+      "target_type": "pull_request",
+      "match_type": "value_overlap",
+      "match_value": "unbrowse-ai:ux-overhaul",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "pull_request.3300165522",
+      "source_type": "pull_request",
+      "target_type": "pull_request",
+      "match_type": "value_overlap",
+      "match_value": "f47fdb7e12746ecd01cf6e659d4d4acdd79210d5",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "pull_request.3300165522",
+      "source_type": "pull_request",
+      "target_type": "pull_request",
+      "match_type": "value_overlap",
+      "match_value": "unbrowse-ai:ux-overhaul",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "pull_request.3300165522",
+      "source_type": "pull_request",
+      "target_type": "pull_request",
+      "match_type": "value_overlap",
+      "match_value": "unbrowse-ai:ux-overhaul",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "pull_request.3300165522",
+      "source_type": "pull_request",
+      "target_type": "pull_request",
+      "match_type": "value_overlap",
+      "match_value": "unbrowse-ai:ux-overhaul",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "pull_request.3300165522",
+      "source_type": "pull_request",
+      "target_type": "pull_request",
+      "match_type": "value_overlap",
+      "match_value": "unbrowse-ai:ux-overhaul",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "pull_request.3300165522",
+      "source_type": "pull_request",
+      "target_type": "pull_request",
+      "match_type": "value_overlap",
+      "match_value": "unbrowse-ai:ux-overhaul",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "pull_request.3296962665",
+      "source_type": "pull_request",
+      "target_type": "pull_request",
+      "match_type": "value_overlap",
+      "match_value": "2b9f7ed577947c76c0564090bb7ca5fa0e4f8f26",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "pull_request.3296962665",
+      "source_type": "pull_request",
+      "target_type": "pull_request",
+      "match_type": "value_overlap",
+      "match_value": "unbrowse-ai:ux-overhaul",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "pull_request.3296962665",
+      "source_type": "pull_request",
+      "target_type": "pull_request",
+      "match_type": "value_overlap",
+      "match_value": "unbrowse-ai:ux-overhaul",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "pull_request.3296962665",
+      "source_type": "pull_request",
+      "target_type": "pull_request",
+      "match_type": "value_overlap",
+      "match_value": "unbrowse-ai:ux-overhaul",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "pull_request.3296962665",
+      "source_type": "pull_request",
+      "target_type": "pull_request",
+      "match_type": "value_overlap",
+      "match_value": "unbrowse-ai:ux-overhaul",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "pull_request.3296962665",
+      "source_type": "pull_request",
+      "target_type": "pull_request",
+      "match_type": "value_overlap",
+      "match_value": "unbrowse-ai:ux-overhaul",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "pull_request.3296962665",
+      "source_type": "pull_request",
+      "target_type": "pull_request",
+      "match_type": "value_overlap",
+      "match_value": "a91ea48816d04e843e158e82abc30d45f5af380b",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "pull_request.3296962665",
+      "source_type": "pull_request",
+      "target_type": "pull_request",
+      "match_type": "value_overlap",
+      "match_value": "a91ea48816d04e843e158e82abc30d45f5af380b",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "pull_request.3296962665",
+      "source_type": "pull_request",
+      "target_type": "pull_request",
+      "match_type": "value_overlap",
+      "match_value": "a91ea48816d04e843e158e82abc30d45f5af380b",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "pull_request.3294824755",
+      "source_type": "pull_request",
+      "target_type": "pull_request",
+      "match_type": "value_overlap",
+      "match_value": "a91ea48816d04e843e158e82abc30d45f5af380b",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "pull_request.3294824755",
+      "source_type": "pull_request",
+      "target_type": "pull_request",
+      "match_type": "value_overlap",
+      "match_value": "a91ea48816d04e843e158e82abc30d45f5af380b",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "pull_request.3294824755",
+      "source_type": "pull_request",
+      "target_type": "pull_request",
+      "match_type": "value_overlap",
+      "match_value": "a91ea48816d04e843e158e82abc30d45f5af380b",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "pull_request.3294821103",
+      "source_type": "pull_request",
+      "target_type": "pull_request",
+      "match_type": "value_overlap",
+      "match_value": "a91ea48816d04e843e158e82abc30d45f5af380b",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "pull_request.3294821103",
+      "source_type": "pull_request",
+      "target_type": "pull_request",
+      "match_type": "value_overlap",
+      "match_value": "a91ea48816d04e843e158e82abc30d45f5af380b",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "pull_request.3294821103",
+      "source_type": "pull_request",
+      "target_type": "pull_request",
+      "match_type": "value_overlap",
+      "match_value": "a91ea48816d04e843e158e82abc30d45f5af380b",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "pull_request.3294572830",
+      "source_type": "pull_request",
+      "target_type": "pull_request",
+      "match_type": "value_overlap",
+      "match_value": "edf1886b642f2e61628e45a3f1a324302e63873d",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "pull_request.3294572830",
+      "source_type": "pull_request",
+      "target_type": "pull_request",
+      "match_type": "value_overlap",
+      "match_value": "edf1886b642f2e61628e45a3f1a324302e63873d",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "pull_request.3294480471",
+      "source_type": "pull_request",
+      "target_type": "pull_request",
+      "match_type": "version",
+      "match_value": "v0.7.6",
+      "correct": true,
+      "reason": "version tag in both"
+    },
+    {
+      "source_id": "pull_request.3294480471",
+      "source_type": "pull_request",
+      "target_type": "pull_request",
+      "match_type": "value_overlap",
+      "match_value": "a91ea48816d04e843e158e82abc30d45f5af380b",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "pull_request.3294480471",
+      "source_type": "pull_request",
+      "target_type": "pull_request",
+      "match_type": "value_overlap",
+      "match_value": "a91ea48816d04e843e158e82abc30d45f5af380b",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "pull_request.3294480471",
+      "source_type": "pull_request",
+      "target_type": "pull_request",
+      "match_type": "value_overlap",
+      "match_value": "a91ea48816d04e843e158e82abc30d45f5af380b",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "pull_request.3294355545",
+      "source_type": "pull_request",
+      "target_type": "pull_request",
+      "match_type": "version",
+      "match_value": "v0.7.6",
+      "correct": true,
+      "reason": "version tag in both"
+    },
+    {
+      "source_id": "pull_request.3294330840",
+      "source_type": "pull_request",
+      "target_type": "pull_request",
+      "match_type": "value_overlap",
+      "match_value": "edf1886b642f2e61628e45a3f1a324302e63873d",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "pull_request.3294330840",
+      "source_type": "pull_request",
+      "target_type": "pull_request",
+      "match_type": "value_overlap",
+      "match_value": "edf1886b642f2e61628e45a3f1a324302e63873d",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "pull_request.3280486235",
+      "source_type": "pull_request",
+      "target_type": "pull_request",
+      "match_type": "value_overlap",
+      "match_value": "12a07cd6f9d269576d72e8e3bd01133d04187ec1",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "pull_request.3280473527",
+      "source_type": "pull_request",
+      "target_type": "pull_request",
+      "match_type": "value_overlap",
+      "match_value": "12a07cd6f9d269576d72e8e3bd01133d04187ec1",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "pull_request.3280473527",
+      "source_type": "pull_request",
+      "target_type": "pull_request",
+      "match_type": "value_overlap",
+      "match_value": "unbrowse-ai:main",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "pull_request.3280473527",
+      "source_type": "pull_request",
+      "target_type": "github_repo",
+      "match_type": "value_overlap",
+      "match_value": "main",
+      "correct": true,
+      "reason": "meaningful overlap (cross-type)"
+    },
+    {
+      "source_id": "pull_request.3260787198",
+      "source_type": "pull_request",
+      "target_type": "pull_request",
+      "match_type": "value_overlap",
+      "match_value": "unbrowse-ai:main",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "pull_request.3260787198",
+      "source_type": "pull_request",
+      "target_type": "github_repo",
+      "match_type": "value_overlap",
+      "match_value": "main",
+      "correct": true,
+      "reason": "meaningful overlap (cross-type)"
+    },
+    {
+      "source_id": "stargazer.0",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "mediovia",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.1",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "yesux",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.2",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "raphbaph",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.3",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "tylerbuilds",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.4",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "roman-tikonov",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.5",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "popda01",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.6",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "jegt",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.7",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "linhpiclu2-bot",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.8",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "az-hussain",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.9",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "pluvi39",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.10",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "mxnstrexgl",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.11",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "hewg74",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.12",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "verioussmith",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.13",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "sushantkadam73",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.14",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "jre-tech",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.15",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "abbythegod",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.16",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "sebastienroux",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.17",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "smian1",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.18",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "diffuzmetall",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.19",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "skymoore",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.20",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "koala73",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.21",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "andydrewie",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.22",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "jin0x",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.23",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "aminatorex",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.24",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "willbnu",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.25",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "alvintoms2136",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.26",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "paraddox",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.27",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "jhteoh",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.28",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "michael-ford",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.29",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "leonardollobato",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.0",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "mediovia",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.1",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "yesux",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.2",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "raphbaph",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.3",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "tylerbuilds",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.4",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "roman-tikonov",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.5",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "popda01",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.6",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "jegt",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.7",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "linhpiclu2-bot",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.8",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "az-hussain",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.9",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "pluvi39",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.10",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "mxnstrexgl",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.11",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "hewg74",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.12",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "verioussmith",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.13",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "sushantkadam73",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.14",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "jre-tech",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.15",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "abbythegod",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.16",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "sebastienroux",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.17",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "smian1",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.18",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "diffuzmetall",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.19",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "skymoore",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.20",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "koala73",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.21",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "andydrewie",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.22",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "jin0x",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.23",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "aminatorex",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.24",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "willbnu",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.25",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "alvintoms2136",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.26",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "paraddox",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.27",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "jhteoh",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.28",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "michael-ford",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.29",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "leonardollobato",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.30",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "guillrmo",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.31",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "plotchy",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.32",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "seouri",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.33",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "renaudguerin",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.34",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "yanzhenqiang",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.35",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "jbrianfrancis-ir",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.36",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "sheawinkler",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.37",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "trkaplan",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.38",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "highbruh",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.39",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "kbsimms",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.40",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "oraekene",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.41",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "stormemeadows",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.42",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "cassao29",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.43",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "darkmuck",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.44",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "gupsammy",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.45",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "blueravenio",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.46",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "jw-source",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.47",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "gianlucamozzillo",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.48",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "yann0s",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.49",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "rohanrajpal",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.50",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "faddy19",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.51",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "mcode-team",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.52",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "aleclarson",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.53",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "0xtc0",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.54",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "hungbk295",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.55",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "netman2048",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.56",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "steveardis",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.57",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "mikez93",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.58",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "markooms",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.59",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "schmuecker",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.60",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "zer0wav3s",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.61",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "kifirkin",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.62",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "erikshestopal",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.63",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "stemcloudmedia",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.64",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "bjoernklose",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.65",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "santiadlv",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.66",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "0xboris",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.67",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "codyburke970",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.68",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "j-bing",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.69",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "brendanboyle87",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.70",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "rajivsinclair",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.71",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "rawwerks",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.72",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "dylankilkenny",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.73",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "b-barry",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.74",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "apandhi",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.75",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "baselmorsy",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.76",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "jasperfurniss",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.77",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "misterakamu",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.78",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "chillerno1",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.79",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "hrsalazar",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.80",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "gavinfaux",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.81",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "pascarujo",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.82",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "hilo-hilo",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.83",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "meccajoe",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.84",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "komalamee",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.85",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "smclaren727",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.86",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "tulip36",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.87",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "cryptolibertus",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.88",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "colemercer",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.89",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "wwwmaster1",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.90",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "johnpierson",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.91",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "immanwell",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.92",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "moorej2400",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.93",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "doodlebears",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.94",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "the20100",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.95",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "felixgraeber",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.96",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "miyajima",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.97",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "rplakas",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.98",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "consultingnextera",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "stargazer.99",
+      "source_type": "stargazer",
+      "target_type": "github_repo",
+      "match_type": "name",
+      "match_value": "janek",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "npm_daily.0",
+      "source_type": "npm_daily",
+      "target_type": "npm_downloads",
+      "match_type": "value_overlap",
+      "match_value": "unbrowse",
+      "correct": true,
+      "reason": "meaningful overlap (cross-type)"
+    },
+    {
+      "source_id": "npm_daily.0",
+      "source_type": "npm_daily",
+      "target_type": "repo",
+      "match_type": "value_overlap",
+      "match_value": "unbrowse",
+      "correct": true,
+      "reason": "meaningful overlap (cross-type)"
+    },
+    {
+      "source_id": "npm_daily.0",
+      "source_type": "npm_daily",
+      "target_type": "metric",
+      "match_type": "value_overlap",
+      "match_value": "unbrowse",
+      "correct": true,
+      "reason": "meaningful overlap (cross-type)"
+    },
+    {
+      "source_id": "npm_daily.0",
+      "source_type": "npm_daily",
+      "target_type": "repo",
+      "match_type": "value_overlap",
+      "match_value": "unbrowse",
+      "correct": true,
+      "reason": "meaningful overlap (cross-type)"
+    },
+    {
+      "source_id": "bug.4198599507",
+      "source_type": "bug",
+      "target_type": "issue",
+      "match_type": "value_overlap",
+      "match_value": "I_kwDORCeEws76QYtT",
+      "correct": true,
+      "reason": "meaningful overlap (cross-type)"
+    },
+    {
+      "source_id": "bug.4198599507",
+      "source_type": "bug",
+      "target_type": "github_repo",
+      "match_type": "value_overlap",
+      "match_value": "I_kwDORCeEws76QYtT",
+      "correct": true,
+      "reason": "meaningful overlap (cross-type)"
+    },
+    {
+      "source_id": "json_data.0",
+      "source_type": "json_data",
+      "target_type": "issue",
+      "match_type": "version",
+      "match_value": "v3.1.0",
+      "correct": true,
+      "reason": "version tag in both"
+    },
+    {
+      "source_id": "json_data.0",
+      "source_type": "json_data",
+      "target_type": "release",
+      "match_type": "version",
+      "match_value": "v3.1.0",
+      "correct": true,
+      "reason": "version tag in both"
+    },
+    {
+      "source_id": "json_data.0",
+      "source_type": "json_data",
+      "target_type": "release",
+      "match_type": "version",
+      "match_value": "v3.1.0",
+      "correct": true,
+      "reason": "version tag in both"
+    },
+    {
+      "source_id": "json_data.0",
+      "source_type": "json_data",
+      "target_type": "github_repo",
+      "match_type": "version",
+      "match_value": "v3.1.0",
+      "correct": true,
+      "reason": "version tag in both"
+    },
+    {
+      "source_id": "json_data.0",
+      "source_type": "json_data",
+      "target_type": "issue",
+      "match_type": "version",
+      "match_value": "v1.1.0",
+      "correct": true,
+      "reason": "version tag in both"
+    },
+    {
+      "source_id": "json_data.0",
+      "source_type": "json_data",
+      "target_type": "issue",
+      "match_type": "version",
+      "match_value": "v3.1.0",
+      "correct": false,
+      "reason": "missing in source"
+    },
+    {
+      "source_id": "json_data.0",
+      "source_type": "json_data",
+      "target_type": "release",
+      "match_type": "version",
+      "match_value": "v3.1.0",
+      "correct": false,
+      "reason": "missing in source"
+    },
+    {
+      "source_id": "json_data.0",
+      "source_type": "json_data",
+      "target_type": "release",
+      "match_type": "version",
+      "match_value": "v3.1.0",
+      "correct": false,
+      "reason": "missing in source"
+    },
+    {
+      "source_id": "json_data.0",
+      "source_type": "json_data",
+      "target_type": "github_repo",
+      "match_type": "version",
+      "match_value": "v3.1.0",
+      "correct": false,
+      "reason": "missing in source"
+    },
+    {
+      "source_id": "json_data.0",
+      "source_type": "json_data",
+      "target_type": "issue",
+      "match_type": "version",
+      "match_value": "v1.1.0",
+      "correct": false,
+      "reason": "missing in source"
+    },
+    {
+      "source_id": "github_repo.2404461",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "mediovia",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.44074974",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "yesux",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.8617544",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "raphbaph",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.129522335",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "tylerbuilds",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.1324783",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "roman-tikonov",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.257661163",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "popda01",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.217202",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "jegt",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.256937799",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "linhpiclu2-bot",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.16861006",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "az-hussain",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.240937738",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "pluvi39",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.173193373",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "mxnstrexgl",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.28154868",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "hewg74",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.211846",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "verioussmith",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.76895528",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "sushantkadam73",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.210912901",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "jre-tech",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.155879381",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "abbythegod",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.2262589",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "sebastienroux",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.8796867",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "smian1",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.208909650",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "diffuzmetall",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.20386670",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "skymoore",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.996596",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "koala73",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.29187465",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "andydrewie",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.6398642",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "jin0x",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.211514079",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "aminatorex",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.30637450",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "willbnu",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.184988215",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "alvintoms2136",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.1156695",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "paraddox",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.245535460",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "jhteoh",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.3802717",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "michael-ford",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.847178",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "leonardollobato",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.737704",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "guillrmo",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.98172525",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "plotchy",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.4379",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "seouri",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.1047312",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "renaudguerin",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.5805019",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "yanzhenqiang",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.127874124",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "jbrianfrancis-ir",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.23161261",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "sheawinkler",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.992897",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "trkaplan",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.86031612",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "highbruh",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.193834661",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "kbsimms",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.149783797",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "oraekene",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.4563022",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "stormemeadows",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.43327872",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "cassao29",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.77098",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "darkmuck",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.20296019",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "gupsammy",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.128207743",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "blueravenio",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.127646014",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "jw-source",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.15693439",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "gianlucamozzillo",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.121159542",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "yann0s",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.7023147",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "rohanrajpal",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.51141314",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "faddy19",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.11708283",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "mcode-team",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.1925840",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "aleclarson",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.100686459",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "0xtc0",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.22929598",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "hungbk295",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.10604029",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "netman2048",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.67895",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "steveardis",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.20568046",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "mikez93",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.110036506",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "markooms",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.10495193",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "schmuecker",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.111663408",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "zer0wav3s",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.6573628",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "kifirkin",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.6404663",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "erikshestopal",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.25706639",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "stemcloudmedia",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.1311410",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "bjoernklose",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.49079265",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "santiadlv",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.15031417",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "0xboris",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.194563665",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "codyburke970",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.10892176",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "j-bing",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.1395328",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "brendanboyle87",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.4379424",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "rajivsinclair",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.19483938",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "rawwerks",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.9889539",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "dylankilkenny",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.3358788",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "b-barry",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.575284",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "apandhi",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.31277733",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "baselmorsy",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.9158723",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "jasperfurniss",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.251037450",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "misterakamu",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.17304934",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "chillerno1",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.1703593",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "hrsalazar",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.294737",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "gavinfaux",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.3139265",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "pascarujo",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.57138830",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "hilo-hilo",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.83676515",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "meccajoe",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.210163767",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "komalamee",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.12155733",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "smclaren727",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.62851473",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "tulip36",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.2815667",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "cryptolibertus",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.4790562",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "colemercer",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.29106458",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "wwwmaster1",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.15744724",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "johnpierson",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.70859080",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "immanwell",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.122148300",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "moorej2400",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.62061729",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "doodlebears",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.15787921",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "the20100",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.22197188",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "felixgraeber",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.126000",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "miyajima",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.1306838",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "rplakas",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.253757706",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "consultingnextera",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.2146927",
+      "source_type": "github_repo",
+      "target_type": "stargazer",
+      "match_type": "name",
+      "match_value": "janek",
+      "correct": true,
+      "reason": "name found in both"
+    },
+    {
+      "source_id": "github_repo.1183712395",
+      "source_type": "github_repo",
+      "target_type": "repo",
+      "match_type": "email",
+      "match_value": "git@github.com",
+      "correct": true,
+      "reason": "valid email in both"
+    },
+    {
+      "source_id": "github_repo.1183712395",
+      "source_type": "github_repo",
+      "target_type": "repo",
+      "match_type": "email",
+      "match_value": "git@github.com",
+      "correct": true,
+      "reason": "valid email in both"
+    },
+    {
+      "source_id": "github_repo.1183712395",
+      "source_type": "github_repo",
+      "target_type": "pull_request",
+      "match_type": "value_overlap",
+      "match_value": "main",
+      "correct": true,
+      "reason": "meaningful overlap (cross-type)"
+    },
+    {
+      "source_id": "github_repo.1183712395",
+      "source_type": "github_repo",
+      "target_type": "pull_request",
+      "match_type": "value_overlap",
+      "match_value": "main",
+      "correct": true,
+      "reason": "meaningful overlap (cross-type)"
+    },
+    {
+      "source_id": "github_repo.4207145089",
+      "source_type": "github_repo",
+      "target_type": "issue",
+      "match_type": "version",
+      "match_value": "v3.1.0",
+      "correct": true,
+      "reason": "version tag in both"
+    },
+    {
+      "source_id": "github_repo.4207145089",
+      "source_type": "github_repo",
+      "target_type": "release",
+      "match_type": "version",
+      "match_value": "v3.1.0",
+      "correct": true,
+      "reason": "version tag in both"
+    },
+    {
+      "source_id": "github_repo.4207145089",
+      "source_type": "github_repo",
+      "target_type": "release",
+      "match_type": "version",
+      "match_value": "v3.1.0",
+      "correct": true,
+      "reason": "version tag in both"
+    },
+    {
+      "source_id": "github_repo.4207145089",
+      "source_type": "github_repo",
+      "target_type": "json_data",
+      "match_type": "version",
+      "match_value": "v3.1.0",
+      "correct": false,
+      "reason": "missing in target"
+    },
+    {
+      "source_id": "github_repo.4203542287",
+      "source_type": "github_repo",
+      "target_type": "issue",
+      "match_type": "value_overlap",
+      "match_value": "I_kwDORCeEws76jPcP",
+      "correct": true,
+      "reason": "meaningful overlap (cross-type)"
+    },
+    {
+      "source_id": "github_repo.4203542287",
+      "source_type": "github_repo",
+      "target_type": "github_repo",
+      "match_type": "value_overlap",
+      "match_value": "COLLABORATOR",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "github_repo.4203542287",
+      "source_type": "github_repo",
+      "target_type": "github_repo",
+      "match_type": "value_overlap",
+      "match_value": "COLLABORATOR",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "github_repo.4203542287",
+      "source_type": "github_repo",
+      "target_type": "github_repo",
+      "match_type": "value_overlap",
+      "match_value": "COLLABORATOR",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "github_repo.4203542287",
+      "source_type": "github_repo",
+      "target_type": "github_repo",
+      "match_type": "value_overlap",
+      "match_value": "COLLABORATOR",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "github_repo.4203542287",
+      "source_type": "github_repo",
+      "target_type": "github_repo",
+      "match_type": "value_overlap",
+      "match_value": "COLLABORATOR",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "github_repo.4203542287",
+      "source_type": "github_repo",
+      "target_type": "github_repo",
+      "match_type": "value_overlap",
+      "match_value": "COLLABORATOR",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "github_repo.4198599507",
+      "source_type": "github_repo",
+      "target_type": "issue",
+      "match_type": "value_overlap",
+      "match_value": "I_kwDORCeEws76QYtT",
+      "correct": true,
+      "reason": "meaningful overlap (cross-type)"
+    },
+    {
+      "source_id": "github_repo.4198599507",
+      "source_type": "github_repo",
+      "target_type": "bug",
+      "match_type": "value_overlap",
+      "match_value": "I_kwDORCeEws76QYtT",
+      "correct": true,
+      "reason": "meaningful overlap (cross-type)"
+    },
+    {
+      "source_id": "github_repo.4198599507",
+      "source_type": "github_repo",
+      "target_type": "github_repo",
+      "match_type": "value_overlap",
+      "match_value": "COLLABORATOR",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "github_repo.4198599507",
+      "source_type": "github_repo",
+      "target_type": "github_repo",
+      "match_type": "value_overlap",
+      "match_value": "COLLABORATOR",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "github_repo.4198599507",
+      "source_type": "github_repo",
+      "target_type": "github_repo",
+      "match_type": "value_overlap",
+      "match_value": "COLLABORATOR",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "github_repo.4198599507",
+      "source_type": "github_repo",
+      "target_type": "github_repo",
+      "match_type": "value_overlap",
+      "match_value": "COLLABORATOR",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "github_repo.4198599507",
+      "source_type": "github_repo",
+      "target_type": "github_repo",
+      "match_type": "value_overlap",
+      "match_value": "COLLABORATOR",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "github_repo.4198599507",
+      "source_type": "github_repo",
+      "target_type": "github_repo",
+      "match_type": "value_overlap",
+      "match_value": "COLLABORATOR",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "github_repo.4163129505",
+      "source_type": "github_repo",
+      "target_type": "issue",
+      "match_type": "id_ref",
+      "match_value": "#123",
+      "correct": true,
+      "reason": "ID reference found in both"
+    },
+    {
+      "source_id": "github_repo.4163129505",
+      "source_type": "github_repo",
+      "target_type": "issue",
+      "match_type": "id_ref",
+      "match_value": "#69",
+      "correct": true,
+      "reason": "ID reference found in both"
+    },
+    {
+      "source_id": "github_repo.4163129505",
+      "source_type": "github_repo",
+      "target_type": "github_repo",
+      "match_type": "id_ref",
+      "match_value": "#69",
+      "correct": true,
+      "reason": "ID reference found in both"
+    },
+    {
+      "source_id": "github_repo.4163129505",
+      "source_type": "github_repo",
+      "target_type": "github_repo",
+      "match_type": "value_overlap",
+      "match_value": "COLLABORATOR",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "github_repo.4163129505",
+      "source_type": "github_repo",
+      "target_type": "github_repo",
+      "match_type": "value_overlap",
+      "match_value": "COLLABORATOR",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "github_repo.4163129505",
+      "source_type": "github_repo",
+      "target_type": "github_repo",
+      "match_type": "value_overlap",
+      "match_value": "COLLABORATOR",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "github_repo.4163129505",
+      "source_type": "github_repo",
+      "target_type": "github_repo",
+      "match_type": "value_overlap",
+      "match_value": "COLLABORATOR",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "github_repo.4163129505",
+      "source_type": "github_repo",
+      "target_type": "github_repo",
+      "match_type": "value_overlap",
+      "match_value": "COLLABORATOR",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "github_repo.4162576594",
+      "source_type": "github_repo",
+      "target_type": "issue",
+      "match_type": "id_ref",
+      "match_value": "#69",
+      "correct": true,
+      "reason": "ID reference found in both"
+    },
+    {
+      "source_id": "github_repo.4162576594",
+      "source_type": "github_repo",
+      "target_type": "issue",
+      "match_type": "id_ref",
+      "match_value": "#69",
+      "correct": true,
+      "reason": "ID reference found in both"
+    },
+    {
+      "source_id": "github_repo.4162576594",
+      "source_type": "github_repo",
+      "target_type": "github_repo",
+      "match_type": "id_ref",
+      "match_value": "#69",
+      "correct": true,
+      "reason": "ID reference found in both"
+    },
+    {
+      "source_id": "github_repo.4162576594",
+      "source_type": "github_repo",
+      "target_type": "github_repo",
+      "match_type": "value_overlap",
+      "match_value": "COLLABORATOR",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "github_repo.4162576594",
+      "source_type": "github_repo",
+      "target_type": "github_repo",
+      "match_type": "value_overlap",
+      "match_value": "COLLABORATOR",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "github_repo.4162576594",
+      "source_type": "github_repo",
+      "target_type": "github_repo",
+      "match_type": "value_overlap",
+      "match_value": "COLLABORATOR",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "github_repo.4162576594",
+      "source_type": "github_repo",
+      "target_type": "github_repo",
+      "match_type": "value_overlap",
+      "match_value": "COLLABORATOR",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "github_repo.4162576594",
+      "source_type": "github_repo",
+      "target_type": "github_repo",
+      "match_type": "value_overlap",
+      "match_value": "COLLABORATOR",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "github_repo.4162575450",
+      "source_type": "github_repo",
+      "target_type": "issue",
+      "match_type": "id_ref",
+      "match_value": "#1",
+      "correct": true,
+      "reason": "ID reference found in both"
+    },
+    {
+      "source_id": "github_repo.4162575450",
+      "source_type": "github_repo",
+      "target_type": "github_repo",
+      "match_type": "value_overlap",
+      "match_value": "COLLABORATOR",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "github_repo.4162575450",
+      "source_type": "github_repo",
+      "target_type": "github_repo",
+      "match_type": "value_overlap",
+      "match_value": "COLLABORATOR",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "github_repo.4162575450",
+      "source_type": "github_repo",
+      "target_type": "github_repo",
+      "match_type": "value_overlap",
+      "match_value": "COLLABORATOR",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "github_repo.4162575450",
+      "source_type": "github_repo",
+      "target_type": "github_repo",
+      "match_type": "value_overlap",
+      "match_value": "COLLABORATOR",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "github_repo.4162575450",
+      "source_type": "github_repo",
+      "target_type": "github_repo",
+      "match_type": "value_overlap",
+      "match_value": "COLLABORATOR",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "github_repo.4162575450",
+      "source_type": "github_repo",
+      "target_type": "github_repo",
+      "match_type": "value_overlap",
+      "match_value": "COLLABORATOR",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "github_repo.4111313681",
+      "source_type": "github_repo",
+      "target_type": "issue",
+      "match_type": "value_overlap",
+      "match_value": "I_kwDORCeEws71DasR",
+      "correct": true,
+      "reason": "meaningful overlap (cross-type)"
+    },
+    {
+      "source_id": "github_repo.4111313681",
+      "source_type": "github_repo",
+      "target_type": "github_repo",
+      "match_type": "value_overlap",
+      "match_value": "COLLABORATOR",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "github_repo.4111313681",
+      "source_type": "github_repo",
+      "target_type": "github_repo",
+      "match_type": "value_overlap",
+      "match_value": "COLLABORATOR",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "github_repo.4111313681",
+      "source_type": "github_repo",
+      "target_type": "github_repo",
+      "match_type": "value_overlap",
+      "match_value": "COLLABORATOR",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "github_repo.4111313681",
+      "source_type": "github_repo",
+      "target_type": "github_repo",
+      "match_type": "value_overlap",
+      "match_value": "COLLABORATOR",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "github_repo.4111313681",
+      "source_type": "github_repo",
+      "target_type": "github_repo",
+      "match_type": "value_overlap",
+      "match_value": "COLLABORATOR",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "github_repo.4111313681",
+      "source_type": "github_repo",
+      "target_type": "github_repo",
+      "match_type": "value_overlap",
+      "match_value": "COLLABORATOR",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "github_repo.4094497279",
+      "source_type": "github_repo",
+      "target_type": "issue",
+      "match_type": "version",
+      "match_value": "v0.1.0",
+      "correct": true,
+      "reason": "version tag in both"
+    },
+    {
+      "source_id": "github_repo.4079007601",
+      "source_type": "github_repo",
+      "target_type": "issue",
+      "match_type": "value_overlap",
+      "match_value": "I_kwDORCeEws7zILdx",
+      "correct": true,
+      "reason": "meaningful overlap (cross-type)"
+    },
+    {
+      "source_id": "github_repo.4079007601",
+      "source_type": "github_repo",
+      "target_type": "github_repo",
+      "match_type": "value_overlap",
+      "match_value": "COLLABORATOR",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "github_repo.4079007601",
+      "source_type": "github_repo",
+      "target_type": "github_repo",
+      "match_type": "value_overlap",
+      "match_value": "COLLABORATOR",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "github_repo.4079007601",
+      "source_type": "github_repo",
+      "target_type": "github_repo",
+      "match_type": "value_overlap",
+      "match_value": "COLLABORATOR",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "github_repo.4079007601",
+      "source_type": "github_repo",
+      "target_type": "github_repo",
+      "match_type": "value_overlap",
+      "match_value": "COLLABORATOR",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "github_repo.4079007601",
+      "source_type": "github_repo",
+      "target_type": "github_repo",
+      "match_type": "value_overlap",
+      "match_value": "COLLABORATOR",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "github_repo.4079007601",
+      "source_type": "github_repo",
+      "target_type": "github_repo",
+      "match_type": "value_overlap",
+      "match_value": "COLLABORATOR",
+      "correct": true,
+      "reason": "meaningful overlap"
+    },
+    {
+      "source_id": "github_repo.4077318115",
+      "source_type": "github_repo",
+      "target_type": "issue",
+      "match_type": "version",
+      "match_value": "v22.22.0",
+      "correct": true,
+      "reason": "version tag in both"
+    },
+    {
+      "source_id": "github_repo.4077318115",
+      "source_type": "github_repo",
+      "target_type": "issue",
+      "match_type": "version",
+      "match_value": "v22.22.0",
+      "correct": true,
+      "reason": "version tag in both"
+    }
+  ]
+}

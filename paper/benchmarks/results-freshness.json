@@ -1,0 +1,27 @@
+{
+  "tests": [
+    {
+      "name": "github_issue",
+      "snap": 20,
+      "live": 21,
+      "confirmed": true
+    },
+    {
+      "name": "crm_deal",
+      "original": "dd_ic_done_waiting_result",
+      "mutated": "BENCH_1775409097095",
+      "live": "BENCH_1775409097095",
+      "confirmed": true
+    },
+    {
+      "name": "npm_live_match",
+      "el": 3125,
+      "direct": 3125,
+      "confirmed": true
+    }
+  ],
+  "summary": {
+    "passed": 3,
+    "total": 3
+  }
+}

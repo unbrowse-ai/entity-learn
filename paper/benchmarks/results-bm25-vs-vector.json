@@ -1,0 +1,153 @@
+{
+  "summary": {
+    "total_queries": 14,
+    "total_entities": 400,
+    "embedding_time_ms": 10509,
+    "bm25_mean_recall": 0.7357142857142858,
+    "vector_mean_recall": 0.9500000000000001,
+    "bm25_wins": 0,
+    "vector_wins": 3,
+    "ties": 11,
+    "by_category": {
+      "identifier": {
+        "count": 3,
+        "bm25_mean_recall": 0,
+        "vector_mean_recall": 1
+      },
+      "keyword": {
+        "count": 3,
+        "bm25_mean_recall": 1,
+        "vector_mean_recall": 1
+      },
+      "version": {
+        "count": 2,
+        "bm25_mean_recall": 1,
+        "vector_mean_recall": 1
+      },
+      "entity_name": {
+        "count": 5,
+        "bm25_mean_recall": 1,
+        "vector_mean_recall": 1
+      },
+      "status": {
+        "count": 1,
+        "bm25_mean_recall": 0.3,
+        "vector_mean_recall": 0.3
+      }
+    }
+  },
+  "results": [
+    {
+      "query": "issue #76",
+      "category": "identifier",
+      "relevant_count": 1,
+      "bm25_recall": 0,
+      "vector_recall": 1,
+      "winner": "VECTOR"
+    },
+    {
+      "query": "issue #74",
+      "category": "identifier",
+      "relevant_count": 1,
+      "bm25_recall": 0,
+      "vector_recall": 1,
+      "winner": "VECTOR"
+    },
+    {
+      "query": "issue #72",
+      "category": "identifier",
+      "relevant_count": 1,
+      "bm25_recall": 0,
+      "vector_recall": 1,
+      "winner": "VECTOR"
+    },
+    {
+      "query": "Windows: Server",
+      "category": "keyword",
+      "relevant_count": 1,
+      "bm25_recall": 1,
+      "vector_recall": 1,
+      "winner": "TIE"
+    },
+    {
+      "query": "site: linkedin.com",
+      "category": "keyword",
+      "relevant_count": 1,
+      "bm25_recall": 1,
+      "vector_recall": 1,
+      "winner": "TIE"
+    },
+    {
+      "query": "site: reddit.com",
+      "category": "keyword",
+      "relevant_count": 1,
+      "bm25_recall": 1,
+      "vector_recall": 1,
+      "winner": "TIE"
+    },
+    {
+      "query": "v0.5.13",
+      "category": "version",
+      "relevant_count": 2,
+      "bm25_recall": 1,
+      "vector_recall": 1,
+      "winner": "TIE"
+    },
+    {
+      "query": "v0.5.12",
+      "category": "version",
+      "relevant_count": 2,
+      "bm25_recall": 1,
+      "vector_recall": 1,
+      "winner": "TIE"
+    },
+    {
+      "query": "Pebblebed",
+      "category": "entity_name",
+      "relevant_count": 1,
+      "bm25_recall": 1,
+      "vector_recall": 1,
+      "winner": "TIE"
+    },
+    {
+      "query": "Maven 11",
+      "category": "entity_name",
+      "relevant_count": 1,
+      "bm25_recall": 1,
+      "vector_recall": 1,
+      "winner": "TIE"
+    },
+    {
+      "query": "Decasonic",
+      "category": "entity_name",
+      "relevant_count": 1,
+      "bm25_recall": 1,
+      "vector_recall": 1,
+      "winner": "TIE"
+    },
+    {
+      "query": "open issues",
+      "category": "status",
+      "relevant_count": 10,
+      "bm25_recall": 0.3,
+      "vector_recall": 0.3,
+      "winner": "TIE"
+    },
+    {
+      "query": "mediovia",
+      "category": "entity_name",
+      "relevant_count": 1,
+      "bm25_recall": 1,
+      "vector_recall": 1,
+      "winner": "TIE"
+    },
+    {
+      "query": "YeSuX",
+      "category": "entity_name",
+      "relevant_count": 1,
+      "bm25_recall": 1,
+      "vector_recall": 1,
+      "winner": "TIE"
+    }
+  ]
+}
