@@ -585,6 +585,11 @@ function query(type?: string, search?: string, withRelations = false): ResolvedE
   return results;
 }
 
+// --- Exports (for library use) ---
+
+export { learn, query, resolve, readStore, writeStore, discoverRelations, normalizeEntities };
+export type { Pointer, PointerStore, ResolvedEntity, Relation };
+
 // --- CLI ---
 
 const [,, cmd, ...args] = process.argv;
@@ -614,6 +619,20 @@ switch (cmd) {
     break;
   }
 
+  case "render": {
+    const prompt = args[0] ?? "init";
+    const { render } = await import("./render.js");
+    const store = readStore();
+    const typesFn = () => {
+      const counts: Record<string, number> = {};
+      for (const p of store.pointers) counts[p.entity_type] = (counts[p.entity_type] || 0) + 1;
+      return counts;
+    };
+    const output = render(prompt, query, typesFn);
+    process.stdout.write(output);
+    break;
+  }
+
   case "types": {
     const store = readStore();
     const typeCounts: Record<string, number> = {};
@@ -637,10 +656,22 @@ switch (cmd) {
     break;
   }
 
+  case "serve": {
+    const port = args[0] ?? "3001";
+    const scriptDir = new URL(".", import.meta.url).pathname;
+    const hudServer = join(scriptDir, "..", "hud", "serve.mjs");
+    const { execSync: run } = await import("child_process");
+    try {
+      run(`node "${hudServer}" ${port}`, { stdio: "inherit" });
+    } catch {}
+    break;
+  }
   default:
-    console.error("Commands: learn, query, types, pointers");
+    console.error("Commands: learn, query, render, types, pointers, serve");
     console.error("  learn <command> [--type <type>] [--ttl <seconds>]");
-    console.error("  query [--type <type>] [--search <term>]");
+    console.error("  query [--type <type>] [--search <term>] [--related]");
+    console.error("  render <prompt>  — generate JSONL spec patches");
     console.error("  types");
     console.error("  pointers");
+    console.error("  serve [port]  — start the UI");
 }

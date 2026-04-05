@@ -1,4 +1,279 @@
 #!/usr/bin/env node
+var __defProp = Object.defineProperty;
+var __getOwnPropNames = Object.getOwnPropertyNames;
+var __esm = (fn, res) => function __init() {
+  return fn && (res = (0, fn[__getOwnPropNames(fn)[0]])(fn = 0)), res;
+};
+var __export = (target, all) => {
+  for (var name in all)
+    __defProp(target, name, { get: all[name], enumerable: true });
+};
+
+// lib/render.ts
+var render_exports = {};
+__export(render_exports, {
+  render: () => render
+});
+function p(op, path, value) {
+  return JSON.stringify({ op, path, value });
+}
+function truncate(s, n) {
+  return s.length > n ? s.slice(0, n - 3) + "..." : s;
+}
+function isMarkdown(s) {
+  if (s.length < 50) return false;
+  return s.includes("\n") && (s.includes("```") || s.includes("## ") || s.includes("- ") || s.includes("* ") || s.includes("| ") || s.includes("[") || s.includes("**") || s.includes("1. "));
+}
+function findImage(data) {
+  for (const [key, val] of Object.entries(data)) {
+    if (typeof val !== "string" || !val.startsWith("http")) continue;
+    if (IMAGE_PAT.test(key) || IMAGE_EXT.test(val) || IMAGE_HOST.test(val)) return val;
+  }
+  return null;
+}
+function isImageUrl(url) {
+  return IMAGE_EXT.test(url) || IMAGE_HOST.test(url) || IMAGE_PAT.test(url);
+}
+function findName(data) {
+  for (const [key, val] of Object.entries(data)) {
+    if (typeof val !== "string" || !val || val.length > 50) continue;
+    if (/^(login|username|name|author|user\.login|author\.login|user\.name|owner|creator|sender)$/i.test(key)) return val;
+  }
+  return null;
+}
+function generateTypeList(queryFn, typesFn) {
+  const typesRaw = typesFn();
+  if (!typesRaw) return [p("add", "/root", "empty"), p("add", "/elements/empty", { type: "Empty", props: { message: "No pointers. Run: entity-learn learn <command>" }, children: [] })];
+  navStack = ["Types"];
+  const types = Object.entries(typesRaw);
+  const total = types.reduce((s, [, c]) => s + c, 0);
+  const lines = [];
+  lines.push(p("add", "/root", "root"));
+  lines.push(p("add", "/elements/root", { type: "Stack", props: { gap: "md" }, children: ["list"] }));
+  const itemIds = types.map(([t]) => `t-${t}`);
+  lines.push(p("add", "/elements/list", {
+    type: "ListView",
+    props: { title: "Entity Types", subtitle: `${total} entities across ${types.length} types`, emptyMessage: null },
+    children: itemIds
+  }));
+  for (const [t, count] of types) {
+    lines.push(p("add", `/elements/t-${t}`, {
+      type: "ListItem",
+      props: { title: t, subtitle: `${count} entit${count === 1 ? "y" : "ies"}`, icon: ICONS[t] ?? "\u{1F4C4}", status: null, id: t, type: t, image: null },
+      children: []
+    }));
+  }
+  return lines;
+}
+function generateEntityList(entityType, queryFn) {
+  const entities = queryFn(entityType);
+  if (!entities.length) return [];
+  navStack = ["Types", entityType];
+  const icon = ICONS[entityType] ?? "\u{1F4C4}";
+  const lines = [];
+  lines.push(p("add", "/root", "root"));
+  lines.push(p("add", "/elements/root", { type: "Stack", props: { gap: "sm" }, children: ["nav", "list"] }));
+  lines.push(p("add", "/elements/nav", { type: "NavBar", props: { breadcrumbs: [...navStack] }, children: [] }));
+  const itemIds = entities.map((_, i) => `i-${i}`);
+  lines.push(p("add", "/elements/list", {
+    type: "ListView",
+    props: { title: `${icon} ${entityType}`, subtitle: `${entities.length} entities`, emptyMessage: null },
+    children: itemIds
+  }));
+  for (let i = 0; i < entities.length; i++) {
+    const e = entities[i];
+    const eImage = findImage(e.data);
+    const eName = findName(e.data);
+    lines.push(p("add", `/elements/i-${i}`, {
+      type: "ListItem",
+      props: {
+        title: truncate(e.title, 80),
+        subtitle: eName ? `${eName} \xB7 ${truncate(e.source_command, 40)}` : truncate(e.source_command, 60),
+        icon: eImage ? null : icon,
+        image: eImage ?? null,
+        status: e.status ?? null,
+        id: e.id,
+        type: e.type
+      },
+      children: []
+    }));
+  }
+  return lines;
+}
+function generateEntityDetail(entityType, entityId, queryFn) {
+  const entities = queryFn(entityType, void 0, true);
+  if (!entities.length) return [];
+  const entity = entities.find((e) => e.id === entityId);
+  if (!entity) return [];
+  const shortName = entityId.split(".").pop() ?? entityId;
+  if (navStack[1] !== entityType) navStack = ["Types", entityType, shortName];
+  else navStack = [...navStack.slice(0, 2), shortName];
+  const icon = ICONS[entityType] ?? "\u{1F4C4}";
+  const lines = [];
+  const detailChildren = [];
+  lines.push(p("add", "/root", "root"));
+  lines.push(p("add", "/elements/nav", { type: "NavBar", props: { breadcrumbs: [...navStack] }, children: [] }));
+  const image = findImage(entity.data);
+  const authorName = findName(entity.data);
+  const skipPat = /^(node_id|performed_via_github_app|active_lock_reason|pinned_comment|state_reason|type|id|url|repository_url|.*_url$|.*_urls$|locked|author_association|gravatar_id|site_admin|user_view_type)$/;
+  const seen = /* @__PURE__ */ new Set();
+  const fieldEntries = [];
+  for (const key of TYPE_FIELDS[entityType] ?? []) {
+    const match = Object.entries(entity.data).find(([k]) => k === key);
+    if (match && match[1] != null) {
+      fieldEntries.push(match);
+      seen.add(key);
+    }
+  }
+  for (const [key, val] of Object.entries(entity.data)) {
+    if (seen.has(key) || skipPat.test(key) || val == null || typeof val === "object") continue;
+    const s = String(val);
+    if (!s || s.startsWith("https://api.github.com/") || isImageUrl(s)) continue;
+    fieldEntries.push([key, val]);
+    if (fieldEntries.length >= 15) break;
+  }
+  for (const [key, val] of fieldEntries) {
+    const s = String(val);
+    const fid = `f-${key.replace(/[\s.]+/g, "-")}`;
+    const label = key.replace(/[_.]/g, " ");
+    if (isMarkdown(s)) {
+      const lid = `l-${key.replace(/[\s.]+/g, "-")}`;
+      lines.push(p("add", `/elements/${lid}`, { type: "Text", props: { content: label, variant: "caption" }, children: [] }));
+      lines.push(p("add", `/elements/${fid}`, { type: "Markdown", props: { content: truncate(s, 2e3) }, children: [] }));
+      detailChildren.push(lid, fid);
+    } else if (s.length > 200) {
+      const lid = `l-${key.replace(/[\s.]+/g, "-")}`;
+      lines.push(p("add", `/elements/${lid}`, { type: "Text", props: { content: label, variant: "caption" }, children: [] }));
+      lines.push(p("add", `/elements/${fid}`, { type: "Text", props: { content: truncate(s, 500), variant: "body" }, children: [] }));
+      detailChildren.push(lid, fid);
+    } else {
+      lines.push(p("add", `/elements/${fid}`, { type: "DataRow", props: { label, value: truncate(s, 150) }, children: [] }));
+      detailChildren.push(fid);
+    }
+  }
+  lines.push(p("add", "/elements/f-src-label", { type: "Text", props: { content: "source pointer", variant: "caption" }, children: [] }));
+  lines.push(p("add", "/elements/f-src", { type: "Text", props: { content: entity.source_command, variant: "code" }, children: [] }));
+  detailChildren.push("f-src-label", "f-src");
+  lines.push(p("add", "/elements/detail", {
+    type: "DetailView",
+    props: { title: entity.title, subtitle: authorName ? `${entityType} \xB7 ${authorName}` : entityType, icon: image ? null : icon, image: image ?? null, status: entity.status ?? null },
+    children: detailChildren
+  }));
+  const rootChildren = ["nav", "detail"];
+  const relations = entity.related ?? [];
+  if (relations.length > 0) {
+    const linkIds = relations.map((_, i) => `lnk-${i}`);
+    for (let i = 0; i < relations.length; i++) {
+      const rel = relations[i];
+      lines.push(p("add", `/elements/lnk-${i}`, {
+        type: "LinkChip",
+        props: { label: `${truncate(rel.targetTitle, 30)} (${rel.matchType}: ${truncate(rel.matchValue, 20)})`, entityId: rel.targetId, entityType: rel.targetType, icon: ICONS[rel.targetType] ?? "\u{1F4C4}" },
+        children: []
+      }));
+    }
+    lines.push(p("add", "/elements/connections", { type: "Section", props: { title: "Connections", subtitle: `${relations.length} auto-discovered` }, children: linkIds }));
+    rootChildren.push("connections");
+  }
+  lines.push(p("add", "/elements/root", { type: "Stack", props: { gap: "md" }, children: rootChildren }));
+  return lines;
+}
+function generateSearch(searchQuery, queryFn) {
+  const results = queryFn(void 0, searchQuery);
+  if (!results.length) return [];
+  navStack.push(`Search: ${searchQuery}`);
+  const lines = [];
+  lines.push(p("add", "/root", "root"));
+  lines.push(p("add", "/elements/root", { type: "Stack", props: { gap: "sm" }, children: ["nav", "list"] }));
+  lines.push(p("add", "/elements/nav", { type: "NavBar", props: { breadcrumbs: [...navStack] }, children: [] }));
+  const itemIds = results.map((_, i) => `r-${i}`);
+  lines.push(p("add", "/elements/list", {
+    type: "ListView",
+    props: { title: `Search: "${searchQuery}"`, subtitle: `${results.length} results (BM25)`, emptyMessage: null },
+    children: itemIds
+  }));
+  for (let i = 0; i < results.length; i++) {
+    const e = results[i];
+    lines.push(p("add", `/elements/r-${i}`, {
+      type: "ListItem",
+      props: { title: truncate(e.title, 80), subtitle: e.type, icon: ICONS[e.type] ?? "\u{1F4C4}", status: e.status ?? null, id: e.id, type: e.type, image: null },
+      children: []
+    }));
+  }
+  return lines;
+}
+function render(prompt, queryFn, typesFn) {
+  const cmd2 = prompt.trim();
+  let patches = [];
+  if (cmd2 === "init" || cmd2 === "") {
+    patches = generateTypeList(queryFn, typesFn);
+  } else if (cmd2.startsWith("navigate:")) {
+    const [type, ...idParts] = cmd2.slice("navigate:".length).split(":");
+    const id = idParts.join(":");
+    if (!id || id === type) patches = generateEntityList(type, queryFn);
+    else patches = generateEntityDetail(type, id, queryFn);
+  } else if (cmd2 === "back") {
+    navStack.pop();
+    if (navStack.length <= 1) patches = generateTypeList(queryFn, typesFn);
+    else if (navStack.length === 2) patches = generateEntityList(navStack[1], queryFn);
+    else patches = generateTypeList(queryFn, typesFn);
+  } else if (cmd2.startsWith("search:")) {
+    patches = generateSearch(cmd2.slice("search:".length), queryFn);
+  } else {
+    patches = generateSearch(cmd2, queryFn);
+  }
+  return patches.join("\n") + "\n";
+}
+var navStack, ICONS, TYPE_FIELDS, IMAGE_PAT, IMAGE_EXT, IMAGE_HOST;
+var init_render = __esm({
+  "lib/render.ts"() {
+    navStack = [];
+    ICONS = {
+      issue: "\u{1F41B}",
+      deal: "\u{1F4B0}",
+      email: "\u{1F4E7}",
+      email_reply: "\u{1F4E7}",
+      outreach_thread: "\u{1F4E8}",
+      release: "\u{1F680}",
+      pull_request: "\u{1F500}",
+      npm_downloads: "\u{1F4E6}",
+      connector: "\u{1F517}",
+      dead_deal: "\u{1F480}",
+      action: "\u26A1",
+      loose_end: "\u{1F9F5}",
+      referrer: "\u{1F50D}",
+      clone_traffic: "\u{1F4CA}",
+      paper: "\u{1F4C4}",
+      repo: "\u{1F4C1}",
+      metric: "\u{1F4C8}",
+      product: "\u{1F3D7}\uFE0F",
+      draft: "\u270F\uFE0F",
+      stargazer: "\u2B50",
+      contributor: "\u{1F464}",
+      bug: "\u{1F41B}",
+      repo_traffic: "\u{1F4CA}",
+      npm_daily: "\u{1F4E6}",
+      product_metric: "\u{1F4C8}"
+    };
+    TYPE_FIELDS = {
+      issue: ["number", "title", "state", "body", "comments", "created_at", "html_url"],
+      deal: ["name", "firm", "check", "probability", "status", "last signal", "next step", "notes", "email", "intro_via"],
+      pull_request: ["number", "title", "state", "merged", "additions", "deletions", "changed_files", "created_at", "html_url"],
+      release: ["tag_name", "name", "body", "published_at", "html_url"],
+      email: ["subject", "from", "to", "date", "snippet"],
+      outreach_thread: ["name", "email", "status", "last_message", "reply_count"],
+      stargazer: ["login", "starred_at", "html_url"],
+      contributor: ["login", "contributions", "html_url"],
+      repo: ["full_name", "description", "stargazers_count", "forks_count", "open_issues_count", "language", "html_url"],
+      paper: ["title", "citationCount", "influentialCitationCount", "publicationDate"],
+      bug: ["number", "title", "state", "body", "labels", "created_at", "html_url"],
+      connector: ["name", "firm", "relationship", "notes"],
+      dead_deal: ["name", "firm", "reason", "last signal"]
+    };
+    IMAGE_PAT = /avatar|photo|image|picture|logo|icon|thumb|profile/i;
+    IMAGE_EXT = /\.(png|jpg|jpeg|gif|webp|svg)(\?|$)/i;
+    IMAGE_HOST = /avatars\.githubusercontent\.com|gravatar\.com|cloudinary\.com|imgur\.com|pbs\.twimg\.com/;
+  }
+});
 
 // lib/entity-learn.ts
 import { execSync } from "child_process";
@@ -130,7 +405,7 @@ function learn(command, options) {
   }
   if (options?.ttl) pointer.ttl_seconds = options.ttl;
   const store = readStore();
-  const existing = store.pointers.findIndex((p) => p.command === command);
+  const existing = store.pointers.findIndex((p2) => p2.command === command);
   if (existing !== -1) {
     store.pointers[existing] = { ...store.pointers[existing], ...pointer, learned_at: store.pointers[existing].learned_at };
   } else {
@@ -366,7 +641,7 @@ function discoverRelations(entities) {
 function query(type, search, withRelations = false) {
   const store = readStore();
   let results = [];
-  const pointersToResolve = withRelations ? store.pointers : type ? store.pointers.filter((p) => p.entity_type === type) : store.pointers;
+  const pointersToResolve = withRelations ? store.pointers : type ? store.pointers.filter((p2) => p2.entity_type === type) : store.pointers;
   const allEntities = [];
   for (const pointer of pointersToResolve) {
     const rawData = resolve(pointer, store);
@@ -409,31 +684,66 @@ switch (cmd) {
     console.log(JSON.stringify(results, null, 2));
     break;
   }
+  case "render": {
+    const prompt = args[0] ?? "init";
+    const { render: render2 } = await Promise.resolve().then(() => (init_render(), render_exports));
+    const store = readStore();
+    const typesFn = () => {
+      const counts = {};
+      for (const p2 of store.pointers) counts[p2.entity_type] = (counts[p2.entity_type] || 0) + 1;
+      return counts;
+    };
+    const output = render2(prompt, query, typesFn);
+    process.stdout.write(output);
+    break;
+  }
   case "types": {
     const store = readStore();
     const typeCounts = {};
-    for (const p of store.pointers) {
-      typeCounts[p.entity_type] = (typeCounts[p.entity_type] || 0) + 1;
+    for (const p2 of store.pointers) {
+      typeCounts[p2.entity_type] = (typeCounts[p2.entity_type] || 0) + 1;
     }
     console.log(JSON.stringify(typeCounts, null, 2));
     break;
   }
   case "pointers": {
     const store = readStore();
-    console.log(JSON.stringify(store.pointers.map((p) => ({
-      entity_type: p.entity_type,
-      command: p.command,
-      fields: p.fields.length,
-      confidence: p.confidence,
-      use_count: p.use_count,
-      learned_at: p.learned_at
+    console.log(JSON.stringify(store.pointers.map((p2) => ({
+      entity_type: p2.entity_type,
+      command: p2.command,
+      fields: p2.fields.length,
+      confidence: p2.confidence,
+      use_count: p2.use_count,
+      learned_at: p2.learned_at
     })), null, 2));
     break;
   }
+  case "serve": {
+    const port = args[0] ?? "3001";
+    const scriptDir = new URL(".", import.meta.url).pathname;
+    const hudServer = join(scriptDir, "..", "hud", "serve.mjs");
+    const { execSync: run } = await import("child_process");
+    try {
+      run(`node "${hudServer}" ${port}`, { stdio: "inherit" });
+    } catch {
+    }
+    break;
+  }
   default:
-    console.error("Commands: learn, query, types, pointers");
+    console.error("Commands: learn, query, render, types, pointers, serve");
     console.error("  learn <command> [--type <type>] [--ttl <seconds>]");
-    console.error("  query [--type <type>] [--search <term>]");
+    console.error("  query [--type <type>] [--search <term>] [--related]");
+    console.error("  render <prompt>  \u2014 generate JSONL spec patches");
     console.error("  types");
     console.error("  pointers");
+    console.error("  serve [port]  \u2014 start the UI");
 }
+export {
+  discoverRelations,
+  learn,
+  normalizeEntities,
+  query,
+  readStore,
+  resolve,
+  writeStore
+};
