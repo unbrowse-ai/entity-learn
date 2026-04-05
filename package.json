@@ -1,0 +1,17 @@
+{
+  "name": "entity-learn",
+  "version": "0.1.0",
+  "description": "Zero-copy live memory for agents. Learn tool call pointers, query with BM25.",
+  "type": "module",
+  "bin": {
+    "entity-learn": "./bin/entity-learn.mjs"
+  },
+  "files": ["bin", "lib", "SKILL.md"],
+  "scripts": {
+    "build": "npx esbuild lib/entity-learn.ts --bundle --platform=node --format=esm --outfile=bin/entity-learn.mjs --banner:js='#!/usr/bin/env node'",
+    "learn": "node bin/entity-learn.mjs learn",
+    "query": "node bin/entity-learn.mjs query"
+  },
+  "keywords": ["agent", "memory", "bm25", "live", "pointer", "tool-call", "cli"],
+  "license": "MIT"
+}
