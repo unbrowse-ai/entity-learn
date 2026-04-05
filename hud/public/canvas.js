@@ -1,6 +1,11 @@
 // entity-learn canvas — vanilla JS spec renderer
 // ~200 lines, zero frameworks, renders JSONL specs from entity-learn render
 
+// Auto dark mode
+if (window.matchMedia('(prefers-color-scheme: dark)').matches) document.documentElement.classList.add('dark');
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+  document.documentElement.classList.toggle('dark', e.matches);
+});
 const API = '/api/ui';
 const root = document.getElementById('root');
 const dot = document.getElementById('dot');

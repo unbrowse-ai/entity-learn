@@ -633,6 +633,25 @@ switch (cmd) {
     break;
   }
 
+  case "bootstrap": {
+    const dryRun = args.includes("--dry");
+    const maxIdx = args.indexOf("--max-sessions");
+    const maxSessions = maxIdx !== -1 ? Number(args[maxIdx + 1]) : 200;
+    const { bootstrap } = await import("./bootstrap.js");
+    const results = bootstrap(maxSessions, dryRun);
+    console.log(`\nLearned: ${results.learned.length}`);
+    for (const l of results.learned) console.log(l);
+    if (results.skipped.length) {
+      console.log(`\nSkipped: ${results.skipped.length}`);
+      for (const s of results.skipped) console.log(s);
+    }
+    if (results.errors.length) {
+      console.log(`\nErrors: ${results.errors.length}`);
+      for (const e of results.errors) console.log(e);
+    }
+    break;
+  }
+
   case "types": {
     const store = readStore();
     const typeCounts: Record<string, number> = {};

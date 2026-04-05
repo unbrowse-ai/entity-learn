@@ -275,18 +275,172 @@ var init_render = __esm({
   }
 });
 
-// lib/entity-learn.ts
-import { execSync } from "child_process";
-import { readFileSync, writeFileSync, existsSync, mkdirSync } from "fs";
+// lib/bootstrap.ts
+var bootstrap_exports = {};
+__export(bootstrap_exports, {
+  bootstrap: () => bootstrap
+});
+import { readdirSync, readFileSync, statSync } from "fs";
 import { join } from "path";
 import { homedir } from "os";
-var STORE_PATH = join(homedir(), ".agent-org", "pointers.json");
+import { execSync } from "child_process";
+function findJsonlFiles(maxFiles) {
+  const files = [];
+  function walk(dir) {
+    try {
+      for (const entry of readdirSync(dir, { withFileTypes: true })) {
+        const full = join(dir, entry.name);
+        if (entry.isDirectory()) walk(full);
+        else if (entry.name.endsWith(".jsonl")) {
+          try {
+            files.push({ path: full, mtime: statSync(full).mtimeMs });
+          } catch {
+          }
+        }
+      }
+    } catch {
+    }
+  }
+  walk(CLAUDE_DIR);
+  files.sort((a, b) => b.mtime - a.mtime);
+  return files.slice(0, maxFiles).map((f) => f.path);
+}
+function extractDataCommands(jsonlFiles) {
+  const commands = /* @__PURE__ */ new Map();
+  for (const fpath of jsonlFiles) {
+    try {
+      const lines = readFileSync(fpath, "utf-8").split("\n");
+      for (const line of lines) {
+        if (!line.trim()) continue;
+        const obj = JSON.parse(line);
+        if (obj.type !== "assistant") continue;
+        for (const block of obj.message?.content ?? []) {
+          if (block?.type !== "tool_use" || block.name !== "Bash") continue;
+          const cmd2 = block.input?.command ?? "";
+          if (!cmd2) continue;
+          if (SKIP_PATTERNS.some((p2) => p2.test(cmd2))) continue;
+          for (const [pattern, type] of DATA_PATTERNS) {
+            if (pattern.test(cmd2)) {
+              const normalized = cmd2.replace(/\$\{?\w+\}?/g, "*").replace(/\s+2>&1.*$/, "").replace(/\s*\|.*$/, "").trim();
+              const key = `${type}:${normalized}`;
+              const existing = commands.get(key);
+              if (existing) {
+                existing.count++;
+              } else {
+                commands.set(key, { command: cmd2.replace(/\s+2>&1.*$/, "").replace(/\s*\|.*$/, "").trim(), count: 1, type });
+              }
+              break;
+            }
+          }
+        }
+      }
+    } catch {
+    }
+  }
+  return commands;
+}
+function getExistingCommands() {
+  try {
+    const storePath = join(homedir(), ".agent-org", "pointers.json");
+    const store = JSON.parse(readFileSync(storePath, "utf-8"));
+    return new Set((store.pointers ?? []).map((p2) => p2.command));
+  } catch {
+    return /* @__PURE__ */ new Set();
+  }
+}
+function bootstrap(maxSessions = 200, dryRun = false) {
+  const scriptDir = new URL(".", import.meta.url).pathname;
+  const elBin = join(scriptDir, "..", "bin", "entity-learn.mjs");
+  const jsonlFiles = findJsonlFiles(maxSessions);
+  console.log(`Scanning ${jsonlFiles.length} session files...`);
+  const commands = extractDataCommands(jsonlFiles);
+  console.log(`Found ${commands.size} unique data-producing commands`);
+  const existing = getExistingCommands();
+  const results = { learned: [], skipped: [], errors: [] };
+  const sorted = [...commands.values()].sort((a, b) => b.count - a.count);
+  for (const { command, count, type } of sorted) {
+    if (count < 2) continue;
+    if (existing.has(command)) {
+      results.skipped.push(`[skip] ${type}: ${command.slice(0, 60)} (already learned)`);
+      continue;
+    }
+    if (dryRun) {
+      results.learned.push(`[dry] ${type} (${count}x): ${command.slice(0, 80)}`);
+      continue;
+    }
+    try {
+      const escaped = command.replace(/"/g, '\\"');
+      execSync(`node "${elBin}" learn "${escaped}" --type ${type}`, {
+        encoding: "utf-8",
+        timeout: 3e4,
+        stdio: "pipe"
+      });
+      results.learned.push(`[ok] ${type} (${count}x): ${command.slice(0, 80)}`);
+    } catch (e) {
+      const msg = e instanceof Error ? e.message.split("\n")[0] : String(e);
+      results.errors.push(`[err] ${type}: ${command.slice(0, 60)} \u2014 ${msg.slice(0, 40)}`);
+    }
+  }
+  return results;
+}
+var CLAUDE_DIR, DATA_PATTERNS, SKIP_PATTERNS;
+var init_bootstrap = __esm({
+  "lib/bootstrap.ts"() {
+    CLAUDE_DIR = join(homedir(), ".claude", "projects");
+    DATA_PATTERNS = [
+      [/gh api ['"]?repos\/([^\s'"]+)\/issues/, "issue"],
+      [/gh api ['"]?repos\/([^\s'"]+)\/pulls/, "pull_request"],
+      [/gh api ['"]?repos\/([^\s'"]+)\/releases/, "release"],
+      [/gh api ['"]?repos\/([^\s'"]+)\/contributors/, "contributor"],
+      [/gh api ['"]?repos\/([^\s'"]+)\/stargazers/, "stargazer"],
+      [/gh api ['"]?repos\/([^\s'"]+)\/traffic\/views/, "repo_traffic"],
+      [/gh api ['"]?repos\/([^\s'"]+)\/traffic\/clones/, "clone_traffic"],
+      [/gh api ['"]?repos\/([^\s'"]+)['"]\s*$/, "repo"],
+      [/curl.*api\.npmjs\.org\/downloads/, "npm_downloads"],
+      [/curl.*api\.semanticscholar\.org/, "paper"],
+      [/curl.*api\.resend\.com/, "email_campaign"],
+      [/curl.*api\.telegram\.org/, "telegram"],
+      [/curl.*api\.github\.com\/users\//, "github_user"],
+      [/curl.*api\.github\.com\/repos\//, "github_repo"],
+      [/curl.*beta-api\.unbrowse\.ai\/v1\/stats/, "product_metric"],
+      [/curl.*beta-api\.unbrowse\.ai\/v1\/analytics/, "analytics"],
+      [/curl.*cloud\.umami\.is/, "umami_analytics"],
+      [/curl.*public-api\.granola\.ai/, "meeting_note"],
+      [/gws gmail users messages list/, "email"],
+      [/gws calendar \+agenda/, "calendar_event"],
+      [/gws sheets/, "spreadsheet"],
+      [/jq ['"]?\.\w+['"]?\s+.*\.json/, "json_data"]
+    ];
+    SKIP_PATTERNS = [
+      /curl.*localhost/,
+      /curl.*127\.0\.0\.1/,
+      /curl.*health/,
+      /curl.*\.css/,
+      /curl.*\.js$/,
+      /curl.*\.html/,
+      /curl.*install\.sh/,
+      /curl.*-X\s*(PUT|DELETE|PATCH)/,
+      /gh run/,
+      /gh pr create/,
+      /gh issue create/,
+      /gh auth/,
+      /gh release create/
+    ];
+  }
+});
+
+// lib/entity-learn.ts
+import { execSync as execSync2 } from "child_process";
+import { readFileSync as readFileSync2, writeFileSync, existsSync, mkdirSync } from "fs";
+import { join as join2 } from "path";
+import { homedir as homedir2 } from "os";
+var STORE_PATH = join2(homedir2(), ".agent-org", "pointers.json");
 function readStore() {
   if (!existsSync(STORE_PATH)) return { version: 1, pointers: [], cache: {} };
-  return JSON.parse(readFileSync(STORE_PATH, "utf-8"));
+  return JSON.parse(readFileSync2(STORE_PATH, "utf-8"));
 }
 function writeStore(store) {
-  mkdirSync(join(homedir(), ".agent-org"), { recursive: true });
+  mkdirSync(join2(homedir2(), ".agent-org"), { recursive: true });
   writeFileSync(STORE_PATH, JSON.stringify(store, null, 2));
 }
 var ID_CANDIDATES = ["id", "number", "ID", "Id", "_id", "key", "slug", "login", "name", "tag_name", "identifier"];
@@ -387,11 +541,11 @@ function learn(command, options) {
   console.error(`Learning from: ${command}`);
   let output;
   try {
-    output = execSync(command, {
+    output = execSync2(command, {
       encoding: "utf-8",
       timeout: 3e4,
       stdio: ["pipe", "pipe", "pipe"],
-      env: { ...process.env, HOME: homedir() },
+      env: { ...process.env, HOME: homedir2() },
       shell: "/bin/zsh"
     });
   } catch (e) {
@@ -427,11 +581,11 @@ function resolve(pointer, store) {
     }
   }
   try {
-    const output = execSync(pointer.command, {
+    const output = execSync2(pointer.command, {
       encoding: "utf-8",
       timeout: 3e4,
       stdio: ["pipe", "pipe", "pipe"],
-      env: { ...process.env, HOME: homedir() },
+      env: { ...process.env, HOME: homedir2() },
       shell: "/bin/zsh"
     });
     const data = JSON.parse(output);
@@ -697,6 +851,27 @@ switch (cmd) {
     process.stdout.write(output);
     break;
   }
+  case "bootstrap": {
+    const dryRun = args.includes("--dry");
+    const maxIdx = args.indexOf("--max-sessions");
+    const maxSessions = maxIdx !== -1 ? Number(args[maxIdx + 1]) : 200;
+    const { bootstrap: bootstrap2 } = await Promise.resolve().then(() => (init_bootstrap(), bootstrap_exports));
+    const results = bootstrap2(maxSessions, dryRun);
+    console.log(`
+Learned: ${results.learned.length}`);
+    for (const l of results.learned) console.log(l);
+    if (results.skipped.length) {
+      console.log(`
+Skipped: ${results.skipped.length}`);
+      for (const s of results.skipped) console.log(s);
+    }
+    if (results.errors.length) {
+      console.log(`
+Errors: ${results.errors.length}`);
+      for (const e of results.errors) console.log(e);
+    }
+    break;
+  }
   case "types": {
     const store = readStore();
     const typeCounts = {};
@@ -721,7 +896,7 @@ switch (cmd) {
   case "serve": {
     const port = args[0] ?? "3001";
     const scriptDir = new URL(".", import.meta.url).pathname;
-    const hudServer = join(scriptDir, "..", "hud", "serve.mjs");
+    const hudServer = join2(scriptDir, "..", "hud", "serve.mjs");
     const { execSync: run } = await import("child_process");
     try {
       run(`node "${hudServer}" ${port}`, { stdio: "inherit" });
