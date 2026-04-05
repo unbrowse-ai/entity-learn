@@ -45,6 +45,15 @@ interface PointerStore {
   cache: Record<string, { data: unknown; fetched_at: string }>;
 }
 
+interface Relation {
+  targetId: string;
+  targetType: string;
+  targetTitle: string;
+  matchField: string;   // which field matched
+  matchValue: string;    // the value that linked them
+  matchType: "email" | "id_ref" | "version" | "name" | "value_overlap";
+}
+
 interface ResolvedEntity {
   id: string;
   type: string;
@@ -52,6 +61,7 @@ interface ResolvedEntity {
   status?: string;
   source_command: string;
   data: Record<string, unknown>;
+  related?: Relation[];
 }
 
 // --- Store ---
@@ -298,17 +308,34 @@ function normalizeEntities(pointer: Pointer, rawData: unknown): ResolvedEntity[]
     const titleVal = pointer.title_field ? String(item[pointer.title_field] ?? idVal) : idVal;
     const statusVal = pointer.status_field ? String(item[pointer.status_field] ?? "") : undefined;
 
+    // Build data: primitive fields + shallow-flattened nested objects
+    const data: Record<string, unknown> = {};
+    for (const f of pointer.fields) {
+      if (item[f] !== undefined) data[f] = item[f];
+    }
+
+    // Shallow-flatten nested objects (one level deep)
+    // e.g. item.user = { login: "x", avatar_url: "..." } → data["user.login"] = "x"
+    for (const [k, v] of Object.entries(item)) {
+      if (typeof v === "object" && v !== null && !Array.isArray(v)) {
+        const nested = v as Record<string, unknown>;
+        const nestedKeys = Object.keys(nested);
+        if (nestedKeys.length > 20) continue; // skip bloated objects
+        for (const [nk, nv] of Object.entries(nested)) {
+          if (typeof nv === "string" || typeof nv === "number" || typeof nv === "boolean") {
+            data[`${k}.${nk}`] = nv;
+          }
+        }
+      }
+    }
+
     entities.push({
       id: `${pointer.entity_type}.${idVal}`,
       type: pointer.entity_type,
       title: titleVal,
       status: statusVal || undefined,
       source_command: pointer.command,
-      data: Object.fromEntries(
-        pointer.fields
-          .filter(f => item[f] !== undefined)
-          .map(f => [f, item[f]])
-      ),
+      data,
     });
   }
 
@@ -366,21 +393,190 @@ function bm25Rank(entities: ResolvedEntity[], queryStr: string, k1 = 1.5, b = 0.
     .map(s => s.entity);
 }
 
-// --- Query ---
+// --- Relation Discovery ---
 
-function query(type?: string, search?: string): ResolvedEntity[] {
+/**
+ * Extract linkable values from an entity's data.
+ * Returns a map of match_type → values found.
+ */
+function extractLinkableValues(entity: ResolvedEntity): Map<string, { field: string; value: string }[]> {
+  const linkables = new Map<string, { field: string; value: string }[]>();
+
+  const addLink = (type: string, field: string, value: string) => {
+    const list = linkables.get(type) ?? [];
+    list.push({ field, value });
+    linkables.set(type, list);
+  };
+
+  for (const [key, val] of Object.entries(entity.data)) {
+    if (val === null || val === undefined) continue;
+    const strVal = String(val);
+    if (!strVal) continue;
+
+    // Emails
+    const emails = strVal.match(/[\w.-]+@[\w.-]+\.\w{2,}/g);
+    if (emails) for (const e of emails) addLink("email", key, e.toLowerCase());
+
+    // Issue/PR number refs (#76)
+    const issueRefs = strVal.match(/#(\d+)\b/g);
+    if (issueRefs) for (const r of issueRefs) addLink("id_ref", key, r);
+
+    // Version tags (v3.1.0)
+    const versions = strVal.match(/\bv\d+\.\d+\.\d+\b/g);
+    if (versions) for (const v of versions) addLink("version", key, v);
+
+    // Logins / usernames (short alphanumeric, from known field patterns)
+    if (/^(login|user\.login|author\.login|username|owner|creator|assignee)$/i.test(key)) {
+      if (typeof val === "string" && val.length > 1 && val.length < 40) {
+        addLink("name", key, val.toLowerCase());
+      }
+    }
+
+    // Firm/org names
+    if (/^(firm|company|org|organization)$/i.test(key)) {
+      if (typeof val === "string" && val.length > 2) {
+        addLink("name", key, val.toLowerCase());
+      }
+    }
+  }
+
+  // Also extract from title and id
+  const titleEmails = entity.title.match(/[\w.-]+@[\w.-]+\.\w{2,}/g);
+  if (titleEmails) for (const e of titleEmails) addLink("email", "title", e.toLowerCase());
+
+  return linkables;
+}
+
+/**
+ * Discover relations between entities by cross-referencing linkable values.
+ * Mutates entities in-place, adding `related` arrays.
+ */
+function discoverRelations(entities: ResolvedEntity[]): void {
+  // Build index: value → entity IDs that contain it
+  const valueIndex = new Map<string, Set<string>>();
+  const entityMap = new Map<string, ResolvedEntity>();
+  const entityLinks = new Map<string, Map<string, { field: string; value: string; matchType: string }>>();
+
+  for (const entity of entities) {
+    entityMap.set(entity.id, entity);
+    const linkables = extractLinkableValues(entity);
+
+    for (const [matchType, items] of linkables) {
+      for (const { field, value } of items) {
+        const key = `${matchType}:${value}`;
+        const set = valueIndex.get(key) ?? new Set();
+        set.add(entity.id);
+        valueIndex.set(key, set);
+
+        // Store per-entity link info
+        const links = entityLinks.get(entity.id) ?? new Map();
+        links.set(key, { field, value, matchType });
+        entityLinks.set(entity.id, links);
+      }
+    }
+  }
+
+  // Also do value_overlap: scan all string values for exact matches across entities
+  // Build a secondary index of distinctive values (emails, IDs, short strings)
+  const distinctiveValues = new Map<string, Set<string>>(); // value → entity IDs
+  for (const entity of entities) {
+    for (const [key, val] of Object.entries(entity.data)) {
+      if (typeof val !== "string" && typeof val !== "number") continue;
+      const strVal = String(val);
+      // Only index distinctive values (not too short, not too long, not URLs, not dates, not common strings)
+      if (strVal.length < 3 || strVal.length > 60) continue;
+      if (strVal.startsWith("http")) continue;
+      if (/^\d+$/.test(strVal) && parseInt(strVal) < 100) continue; // skip small numbers
+      if (/^\d{4}-\d{2}-\d{2}/.test(strVal)) continue; // skip dates
+      if (/^(true|false|null|none|open|closed|active|pending)$/i.test(strVal)) continue; // skip common statuses
+
+      const existing = distinctiveValues.get(strVal) ?? new Set();
+      existing.add(entity.id);
+      distinctiveValues.set(strVal, existing);
+    }
+  }
+
+  // Now build relations from shared values
+  for (const entity of entities) {
+    const related: Relation[] = [];
+    const seen = new Set<string>();
+
+    // From typed linkables (email, id_ref, version, name)
+    const links = entityLinks.get(entity.id);
+    if (links) {
+      for (const [key, { field, value, matchType }] of links) {
+        const sharing = valueIndex.get(key);
+        if (!sharing || sharing.size > 8) continue; // skip values shared by too many entities (not distinctive)
+        for (const otherId of sharing) {
+          if (otherId === entity.id || seen.has(otherId)) continue;
+          const other = entityMap.get(otherId);
+          if (!other) continue;
+          seen.add(otherId);
+          related.push({
+            targetId: otherId,
+            targetType: other.type,
+            targetTitle: other.title,
+            matchField: field,
+            matchValue: value,
+            matchType: matchType as Relation["matchType"],
+          });
+        }
+      }
+    }
+
+    // From value_overlap (same distinctive value appears in multiple entities)
+    for (const [, val] of Object.entries(entity.data)) {
+      if (typeof val !== "string" || val.length < 3 || val.length > 60) continue;
+      if (val.startsWith("http")) continue;
+      const sharing = distinctiveValues.get(val);
+      if (!sharing || sharing.size < 2 || sharing.size > 8) continue; // 2-8 = distinctive
+      for (const otherId of sharing) {
+        if (otherId === entity.id || seen.has(otherId)) continue;
+        const other = entityMap.get(otherId);
+        if (!other) continue;
+        seen.add(otherId);
+        related.push({
+          targetId: otherId,
+          targetType: other.type,
+          targetTitle: other.title,
+          matchField: "value",
+          matchValue: val,
+          matchType: "value_overlap",
+        });
+      }
+      if (related.length >= 10) break;
+    }
+
+    if (related.length > 0) {
+      entity.related = related.slice(0, 10);
+    }
+  }
+}
+
+// --- Query ---
+function query(type?: string, search?: string, withRelations = false): ResolvedEntity[] {
   const store = readStore();
   let results: ResolvedEntity[] = [];
 
-  const matchingPointers = type
-    ? store.pointers.filter(p => p.entity_type === type)
-    : store.pointers;
+  // If withRelations, resolve ALL pointers to build the full entity graph
+  const pointersToResolve = withRelations
+    ? store.pointers
+    : (type ? store.pointers.filter(p => p.entity_type === type) : store.pointers);
 
-  for (const pointer of matchingPointers) {
+  const allEntities: ResolvedEntity[] = [];
+  for (const pointer of pointersToResolve) {
     const rawData = resolve(pointer, store);
     if (!rawData) continue;
-    results.push(...normalizeEntities(pointer, rawData));
+    allEntities.push(...normalizeEntities(pointer, rawData));
   }
+
+  // Discover cross-entity relations on the full set
+  if (withRelations) {
+    discoverRelations(allEntities);
+  }
+
+  // Filter to requested type after relation discovery
+  results = type ? allEntities.filter(e => e.type === type) : allEntities;
 
   if (search) {
     results = bm25Rank(results, search);
@@ -410,9 +606,10 @@ switch (cmd) {
   case "query": {
     const typeIdx = args.indexOf("--type");
     const searchIdx = args.indexOf("--search");
+    const withRelations = args.includes("--related");
     const type = typeIdx !== -1 ? args[typeIdx + 1] : undefined;
     const search = searchIdx !== -1 ? args[searchIdx + 1] : undefined;
-    const results = query(type, search);
+    const results = query(type, search, withRelations);
     console.log(JSON.stringify(results, null, 2));
     break;
   }

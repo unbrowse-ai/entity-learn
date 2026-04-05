@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+
 // lib/entity-learn.ts
 import { execSync } from "child_process";
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from "fs";
@@ -184,15 +185,29 @@ function normalizeEntities(pointer, rawData) {
     const idVal = pointer.id_field ? String(item[pointer.id_field] ?? key) : key;
     const titleVal = pointer.title_field ? String(item[pointer.title_field] ?? idVal) : idVal;
     const statusVal = pointer.status_field ? String(item[pointer.status_field] ?? "") : void 0;
+    const data = {};
+    for (const f of pointer.fields) {
+      if (item[f] !== void 0) data[f] = item[f];
+    }
+    for (const [k, v] of Object.entries(item)) {
+      if (typeof v === "object" && v !== null && !Array.isArray(v)) {
+        const nested = v;
+        const nestedKeys = Object.keys(nested);
+        if (nestedKeys.length > 20) continue;
+        for (const [nk, nv] of Object.entries(nested)) {
+          if (typeof nv === "string" || typeof nv === "number" || typeof nv === "boolean") {
+            data[`${k}.${nk}`] = nv;
+          }
+        }
+      }
+    }
     entities.push({
       id: `${pointer.entity_type}.${idVal}`,
       type: pointer.entity_type,
       title: titleVal,
       status: statusVal || void 0,
       source_command: pointer.command,
-      data: Object.fromEntries(
-        pointer.fields.filter((f) => item[f] !== void 0).map((f) => [f, item[f]])
-      )
+      data
     });
   }
   return entities;
@@ -232,15 +247,136 @@ function bm25Rank(entities, queryStr, k1 = 1.5, b = 0.75) {
   });
   return scored.filter((s) => s.score > 0).sort((a, b2) => b2.score - a.score).map((s) => s.entity);
 }
-function query(type, search) {
+function extractLinkableValues(entity) {
+  const linkables = /* @__PURE__ */ new Map();
+  const addLink = (type, field, value) => {
+    const list = linkables.get(type) ?? [];
+    list.push({ field, value });
+    linkables.set(type, list);
+  };
+  for (const [key, val] of Object.entries(entity.data)) {
+    if (val === null || val === void 0) continue;
+    const strVal = String(val);
+    if (!strVal) continue;
+    const emails = strVal.match(/[\w.-]+@[\w.-]+\.\w{2,}/g);
+    if (emails) for (const e of emails) addLink("email", key, e.toLowerCase());
+    const issueRefs = strVal.match(/#(\d+)\b/g);
+    if (issueRefs) for (const r of issueRefs) addLink("id_ref", key, r);
+    const versions = strVal.match(/\bv\d+\.\d+\.\d+\b/g);
+    if (versions) for (const v of versions) addLink("version", key, v);
+    if (/^(login|user\.login|author\.login|username|owner|creator|assignee)$/i.test(key)) {
+      if (typeof val === "string" && val.length > 1 && val.length < 40) {
+        addLink("name", key, val.toLowerCase());
+      }
+    }
+    if (/^(firm|company|org|organization)$/i.test(key)) {
+      if (typeof val === "string" && val.length > 2) {
+        addLink("name", key, val.toLowerCase());
+      }
+    }
+  }
+  const titleEmails = entity.title.match(/[\w.-]+@[\w.-]+\.\w{2,}/g);
+  if (titleEmails) for (const e of titleEmails) addLink("email", "title", e.toLowerCase());
+  return linkables;
+}
+function discoverRelations(entities) {
+  const valueIndex = /* @__PURE__ */ new Map();
+  const entityMap = /* @__PURE__ */ new Map();
+  const entityLinks = /* @__PURE__ */ new Map();
+  for (const entity of entities) {
+    entityMap.set(entity.id, entity);
+    const linkables = extractLinkableValues(entity);
+    for (const [matchType, items] of linkables) {
+      for (const { field, value } of items) {
+        const key = `${matchType}:${value}`;
+        const set = valueIndex.get(key) ?? /* @__PURE__ */ new Set();
+        set.add(entity.id);
+        valueIndex.set(key, set);
+        const links = entityLinks.get(entity.id) ?? /* @__PURE__ */ new Map();
+        links.set(key, { field, value, matchType });
+        entityLinks.set(entity.id, links);
+      }
+    }
+  }
+  const distinctiveValues = /* @__PURE__ */ new Map();
+  for (const entity of entities) {
+    for (const [key, val] of Object.entries(entity.data)) {
+      if (typeof val !== "string" && typeof val !== "number") continue;
+      const strVal = String(val);
+      if (strVal.length < 3 || strVal.length > 60) continue;
+      if (strVal.startsWith("http")) continue;
+      if (/^\d+$/.test(strVal) && parseInt(strVal) < 100) continue;
+      if (/^\d{4}-\d{2}-\d{2}/.test(strVal)) continue;
+      if (/^(true|false|null|none|open|closed|active|pending)$/i.test(strVal)) continue;
+      const existing = distinctiveValues.get(strVal) ?? /* @__PURE__ */ new Set();
+      existing.add(entity.id);
+      distinctiveValues.set(strVal, existing);
+    }
+  }
+  for (const entity of entities) {
+    const related = [];
+    const seen = /* @__PURE__ */ new Set();
+    const links = entityLinks.get(entity.id);
+    if (links) {
+      for (const [key, { field, value, matchType }] of links) {
+        const sharing = valueIndex.get(key);
+        if (!sharing || sharing.size > 8) continue;
+        for (const otherId of sharing) {
+          if (otherId === entity.id || seen.has(otherId)) continue;
+          const other = entityMap.get(otherId);
+          if (!other) continue;
+          seen.add(otherId);
+          related.push({
+            targetId: otherId,
+            targetType: other.type,
+            targetTitle: other.title,
+            matchField: field,
+            matchValue: value,
+            matchType
+          });
+        }
+      }
+    }
+    for (const [, val] of Object.entries(entity.data)) {
+      if (typeof val !== "string" || val.length < 3 || val.length > 60) continue;
+      if (val.startsWith("http")) continue;
+      const sharing = distinctiveValues.get(val);
+      if (!sharing || sharing.size < 2 || sharing.size > 8) continue;
+      for (const otherId of sharing) {
+        if (otherId === entity.id || seen.has(otherId)) continue;
+        const other = entityMap.get(otherId);
+        if (!other) continue;
+        seen.add(otherId);
+        related.push({
+          targetId: otherId,
+          targetType: other.type,
+          targetTitle: other.title,
+          matchField: "value",
+          matchValue: val,
+          matchType: "value_overlap"
+        });
+      }
+      if (related.length >= 10) break;
+    }
+    if (related.length > 0) {
+      entity.related = related.slice(0, 10);
+    }
+  }
+}
+function query(type, search, withRelations = false) {
   const store = readStore();
   let results = [];
-  const matchingPointers = type ? store.pointers.filter((p) => p.entity_type === type) : store.pointers;
-  for (const pointer of matchingPointers) {
+  const pointersToResolve = withRelations ? store.pointers : type ? store.pointers.filter((p) => p.entity_type === type) : store.pointers;
+  const allEntities = [];
+  for (const pointer of pointersToResolve) {
     const rawData = resolve(pointer, store);
     if (!rawData) continue;
-    results.push(...normalizeEntities(pointer, rawData));
+    allEntities.push(...normalizeEntities(pointer, rawData));
   }
+  if (withRelations) {
+    discoverRelations(allEntities);
+  }
+  results = type ? allEntities.filter((e) => e.type === type) : allEntities;
   if (search) {
     results = bm25Rank(results, search);
   }
@@ -266,9 +402,10 @@ switch (cmd) {
   case "query": {
     const typeIdx = args.indexOf("--type");
     const searchIdx = args.indexOf("--search");
+    const withRelations = args.includes("--related");
     const type = typeIdx !== -1 ? args[typeIdx + 1] : void 0;
     const search = searchIdx !== -1 ? args[searchIdx + 1] : void 0;
-    const results = query(type, search);
+    const results = query(type, search, withRelations);
     console.log(JSON.stringify(results, null, 2));
     break;
   }
