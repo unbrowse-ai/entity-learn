@@ -4,7 +4,7 @@
 \usepackage{fix-cm}
 \usepackage[T1]{fontenc}
 \usepackage[margin=1in]{geometry}
-\usepackage{amsmath,amssymb}
+\usepackage{amsmath,amssymb,amsthm}
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{listings}
@@ -27,6 +27,9 @@
 \pgfplotsset{compat=1.18}
 \usepackage{algorithm}
 \usepackage{algorithmic}
+
+\newtheorem{definition}{Definition}
+\newtheorem{theorem}{Theorem}
 
 % ─── Colours ────────────────────────────────────────────────────────────────
 \definecolor{codeblue}{rgb}{0.08,0.38,0.74}
@@ -198,9 +201,9 @@ Entity-Learn has four components: \textbf{Learn} (pointer creation with schema i
 \begin{figure*}[t]
 \centering
 \begin{tikzpicture}[
-  node distance=1.2cm and 1.6cm,
-  box/.style={draw, rounded corners=3pt, minimum width=2.4cm, minimum height=0.8cm, font=\small, fill=codebg},
-  store/.style={draw, rounded corners=3pt, minimum width=2.8cm, minimum height=0.8cm, font=\small, fill=accentblue!10},
+  node distance=0.8cm and 0.9cm,
+  box/.style={draw, rounded corners=3pt, minimum width=1.8cm, minimum height=0.7cm, font=\small, fill=codebg},
+  store/.style={draw, rounded corners=3pt, minimum width=2.0cm, minimum height=0.7cm, font=\small, fill=accentblue!10},
   arrow/.style={-{Stealth[length=5pt]}, thick},
 ]
 
@@ -215,7 +218,7 @@ Entity-Learn has four components: \textbf{Learn} (pointer creation with schema i
 \node[box, right=of resolve] (cache) {TTL Cache};
 
 % External
-\node[right=1.4cm of cache, font=\small\itshape, text=codegray] (apis) {GitHub, Gmail,\\Calendar, CRM, \ldots};
+\node[right=0.9cm of cache, font=\small\itshape, text=codegray, align=center] (apis) {GitHub, Gmail,\\Calendar, CRM, \ldots};
 
 % Arrows
 \draw[arrow] (learn) -- (schema);
@@ -228,7 +231,7 @@ Entity-Learn has four components: \textbf{Learn} (pointer creation with schema i
 \draw[arrow, dashed] (cache) -- (apis);
 
 \end{tikzpicture}
-\caption{Entity-Learn architecture. The pointer store holds only command strings and inferred schemas. At query time, \texttt{Resolve} re-executes commands (with TTL caching) to obtain live data, which is then ranked by BM25 and linked through relation discovery. Bootstrap auto-populates pointers from session history.}
+\caption{Entity-Learn architecture. The pointer store holds command strings and inferred schemas. At query time, Resolve re-executes commands (with TTL caching), ranks results with BM25, and links entities through relation discovery. Bootstrap auto-populates pointers from session history.}
 \label{fig:architecture}
 \end{figure*}
 
@@ -278,21 +281,21 @@ No LLM call is required, making the operation deterministic and sub-millisecond.
 \ENSURE Pointer $p$ or $\bot$
 \STATE $J \leftarrow \text{\textsc{Parse}}(c.\text{stdout})$
 \IF{$J$ is array}
-  \STATE $\text{shape} \leftarrow \texttt{array}$; $S \leftarrow J[0{:}5]$
+  \STATE shape $\leftarrow$ \texttt{array}; $S \leftarrow J[0{:}5]$
 \ELSIF{$J$ is object-of-objects}
-  \STATE $\text{shape} \leftarrow \texttt{object\_of\_objects}$; $S \leftarrow \text{values}(J)[0{:}5]$
+  \STATE shape $\leftarrow$ \texttt{ooo}; $S \leftarrow \text{vals}(J)[0{:}5]$
 \ELSIF{$J$ is object}
-  \STATE $\text{shape} \leftarrow \texttt{object}$; $S \leftarrow [J]$
+  \STATE shape $\leftarrow$ \texttt{object}; $S \leftarrow [J]$
 \ELSE
   \RETURN $\bot$
 \ENDIF
 \STATE $K \leftarrow \bigcup_{s \in S} \text{keys}(s)$
-\STATE $\text{id} \leftarrow \text{\textsc{Match}}(K, \text{ID\_CANDIDATES})$
-\STATE $\text{title} \leftarrow \text{\textsc{Match}}(K, \text{TITLE\_CANDIDATES})$
-\STATE $\text{status} \leftarrow \text{\textsc{Match}}(K, \text{STATUS\_CANDIDATES})$
-\STATE $\text{type} \leftarrow \text{\textsc{InferType}}(c)$ \COMMENT{from command segments}
-\STATE $\text{conf} \leftarrow 0.5 + 0.2[\text{id}] + 0.2[\text{title}] + 0.1[\text{status}]$
-\RETURN $p(c, \text{type}, \text{shape}, \text{id}, \text{title}, \text{status}, K, \text{conf})$
+\STATE $\text{id} \leftarrow \text{\textsc{Match}}(K, \text{ID\_C})$
+\STATE $\text{title} \leftarrow \text{\textsc{Match}}(K, \text{TTL\_C})$
+\STATE $\text{stat} \leftarrow \text{\textsc{Match}}(K, \text{STAT\_C})$
+\STATE $\text{type} \leftarrow \text{\textsc{InferType}}(c)$
+\STATE $\gamma \leftarrow 0.5 {+} 0.2[\text{id}] {+} 0.2[\text{title}] {+} 0.1[\text{stat}]$
+\RETURN $p(c, \text{type}, \text{shape}, K, \gamma)$
 \end{algorithmic}
 \end{algorithm}
 
@@ -348,7 +351,7 @@ Given a query string $q$, we tokenize $q$ and each entity's concatenated text (t
 The standard BM25 scoring function ranks entities:
 
 \begin{equation}
-\text{score}(e, q) = \sum_{t \in q} \text{IDF}(t) \cdot \frac{f(t, e) \cdot (k_1 + 1)}{f(t, e) + k_1 \cdot (1 - b + b \cdot |e| / \overline{|e|})}
+\text{score}(e, q) = \sum_{t \in q} \text{IDF}(t) \cdot \frac{f(t, e) (k_1 {+} 1)}{f(t, e) + k_1 (1 {-} b {+} b \frac{|e|}{\overline{|e|}})}
 \end{equation}
 
 where $f(t, e)$ is the term frequency of $t$ in entity $e$, $|e|$ is the document length, $\overline{|e|}$ is the average document length across all entities, and we use $k_1 = 1.5$, $b = 0.75$ (standard defaults).
@@ -457,18 +460,18 @@ The pointer-only store (excluding cache) is 31.9\,KB. With TTL cache populated, 
 A full resolve across all 50 pointers yields 400 entities across 30 active types (one type returned no data due to an expired API token).
 
 \begin{table}[t]
-\centering
-\caption{Cross-source retrieval results (production deployment, 50 pointers, 31 entity types)}
+\centering\small
+\caption{Cross-source retrieval results (production, 50 pointers, 31 types)}
 \label{tab:retrieval}
-\begin{tabular}{lrr}
+\begin{tabular}{@{}lrr@{}}
 \toprule
 \textbf{Query mode} & \textbf{Entities} & \textbf{Latency} \\
 \midrule
-Full resolve (cold, all 50 ptrs) & 400 & 17.7s \\
-Search ``unbrowse'' (cold, 11 types) & 75 & 25.5s \\
-Type-filtered (cold, single type) & 20 & 1.3s \\
-Type-filtered (warm, cached) & 20 & 57ms \\
-Search with relations (warm) & 75 & 128ms \\
+Full resolve (cold, 50 ptrs) & 400 & 17.7s \\
+Search (cold, 11 types) & 75 & 25.5s \\
+Type-filtered (cold) & 20 & 1.3s \\
+Type-filtered (warm) & 20 & 57ms \\
+Search + relations (warm) & 75 & 128ms \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -571,16 +574,16 @@ We verify Entity-Learn's freshness guarantee---the core claim that live pointer 
 \textbf{Test 3: npm Downloads Consistency.} We compare Entity-Learn's npm download count against a direct \texttt{curl} to the npm API. Both return 3{,}125, confirming the pointer produces identical results to the source of truth.
 
 \begin{table}[t]
-\centering
+\centering\small
 \caption{Freshness verification: snapshot vs.\ live pointer replay}
 \label{tab:freshness}
-\begin{tabular}{llll}
+\begin{tabular}{@{}lp{1.6cm}p{1.8cm}c@{}}
 \toprule
-\textbf{Test} & \textbf{Snapshot} & \textbf{Live} & \textbf{Confirmed} \\
+\textbf{Test} & \textbf{Snapshot} & \textbf{Live} & \textbf{OK} \\
 \midrule
-GitHub issue creation & 20 issues (frozen) & 21 issues (live) & Yes \\
-CRM deal mutation & original status & mutated status & Yes \\
-npm live match & N/A & 3{,}125 = 3{,}125 & Yes \\
+GH issue create & 20 (frozen) & 21 (live) & Yes \\
+CRM mutation & orig.\ status & mutated & Yes \\
+npm match & N/A & 3{,}125 = 3{,}125 & Yes \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -592,20 +595,20 @@ All three tests confirmed. Live pointer replay detects mutations that snapshot-b
 We compare BM25 (Entity-Learn's retrieval) against dense vector search using Google's \texttt{gemini-embedding-001} model. We embed all 400 entities and run 14 agent-style queries with ground-truth relevant entities.
 
 \begin{table}[t]
-\centering
+\centering\small
 \caption{BM25 vs.\ vector retrieval by query category (Recall@10)}
 \label{tab:bm25-vs-vector}
-\begin{tabular}{lrrl}
+\begin{tabular}{@{}lrrl@{}}
 \toprule
-\textbf{Query category} & \textbf{BM25} & \textbf{Vector} & \textbf{Winner} \\
+\textbf{Category} & \textbf{BM25} & \textbf{Vec.} & \textbf{Win} \\
 \midrule
-Identifier (\texttt{issue \#76}) & 0\% & 100\% & Vector \\
+Identifier (\texttt{\#76}) & 0\% & 100\% & Vec. \\
 Keyword & 100\% & 100\% & Tie \\
 Version tag & 100\% & 100\% & Tie \\
 Entity name & 100\% & 100\% & Tie \\
 Status-based & 30\% & 30\% & Tie \\
 \midrule
-\textbf{Overall mean recall} & \textbf{73.6\%} & \textbf{95.0\%} & \textbf{Vector} \\
+\textbf{Overall mean} & \textbf{73.6\%} & \textbf{95.0\%} & \textbf{Vec.} \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -621,12 +624,12 @@ Embedding cost was 10.5 seconds for 400 entities---a one-time cost that must be 
 We verify the precision of Entity-Learn's cross-entity relation discovery by programmatically checking whether each discovered relation is factually correct: does the shared value actually appear in both linked entities?
 
 \begin{table}[t]
-\centering
+\centering\small
 \caption{Relation discovery precision by relation type}
 \label{tab:relation-precision}
-\begin{tabular}{lrrr}
+\begin{tabular}{@{}lrrr@{}}
 \toprule
-\textbf{Relation type} & \textbf{Correct} & \textbf{Total} & \textbf{Precision} \\
+\textbf{Type} & \textbf{Correct} & \textbf{Total} & \textbf{Prec.} \\
 \midrule
 value\_overlap & 212 & 212 & 100\% \\
 name & 238 & 238 & 100\% \\
